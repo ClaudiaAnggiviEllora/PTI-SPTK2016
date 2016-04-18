@@ -88,19 +88,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="contact-main">
 					
 					<div class="col-md-6 contact-grid">
-						<form>
+						<form action="ServletCustomer" name="myform" id="myform" method="post">
 							<p class="your-para">Nama :</p>
-							<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+							<input type="text" name="namaCust" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
 							<p class="your-para">Password :</p>
-							<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+							<input type="password" name="passwordUser" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
                                                         <p class="your-para">Nomor Telephone :</p>
-							<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+							<input type="text" name="noTelpCust"value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
 							<p class="your-para">Alamat :</p>
-							<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+							<input type="text" name="alamatCust" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
                                                         <div class="send">
 								<input type="submit" value="Registrasi" >
 							</div>
 						</form>
+                                            
+                                            <script language="JavaScript" type="text/javascript">//<![CDATA[
+//You should create the validator only after the definition of the HTML form
+  var frmvalidator  = new Validator("myform");
+  frmvalidator.addValidation("namaCust","req","masukkan nama lengkap");
+  frmvalidator.addValidation("namaCust","maxlen=40","maksimal nama 40 karakter");
+  frmvalidator.addValidation("namaCust","alpha","nama hanya mengandung huruf");
+  
+  frmvalidator.addValidation("passwordUser","req","masukkan password");
+  frmvalidator.addValidation("passwordUser","maxlen=15","password maksimal 15 karakter");
+  frmvalidator.addValidation("passwordUser","minlen=8","password minimal 8 karakter");
+  
+  frmvalidator.addValidation("nama","req","masukkan nama");
+  frmvalidator.addValidation("nama","maxlen=20","maksimal nama 20 karakter");
+  frmvalidator.addValidation("nama","alpha","nama harus mengandung huruf dan tidak menggunakan spasi");
+  
+  frmvalidator.addValidation("alam","maxlen=50");
+  frmvalidator.addValidation("alam","req","masukkan alamat");
+  
+  frmvalidator.addValidation("ktp","numeric");
+  frmvalidator.addValidation("ktp","req","masukkan no ktp");
+  frmvalidator.addValidation("ktp","maxlen=16","maksimal no ktp 16 karakter");
+  frmvalidator.addValidation("ktp","minlen=16","minimal no ktp 16 karakter");
+  frmvalidator.addValidation("ktp","numeric","username tidak boleh mengandung huruf");
+  
+  frmvalidator.addValidation("hp","numeric");
+  frmvalidator.addValidation("hp","req","masukkan no telp");
+  frmvalidator.addValidation("hp","minlen=6","minimal no telepon yang dimasukan 6 angka");
+  frmvalidator.addValidation("hp","numeric","no telepon tidak boleh mengandung huruf");
+
+//]]></script>
+                                            
+                                            
+                                            
+                                            
+                                            
 					</div>
 						<div class="clearfix"> </div>
 			      </div>
