@@ -122,7 +122,14 @@ public class ServletCustomer extends HttpServlet {
        cust.setAlamatCust(alamat);
        cust.setNoIdUser(noIdUser);
        
-        
+       //baru di buat 
+        //Koneksi con = connection.Koneksi.open();
+        //Statement stmt = con.createStatement();
+        //STring query= "insert into tabelcustomers (namaCUst, passwordUser, noTelpCust, alamatCUst, noIdUser) values ('"+ cust.getNamaCUst()+" dst"
+//stmt.executeUpdate(query);
+//out.prinltn
+//con.close();
+//di kelas jsp ga usah tambah method=""
         try {
       
             Statement statement ;
