@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pti_sptk;
+package modelAndControl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,15 +17,26 @@ import java.sql.Statement;
  */
 public class TabelApplicant {
 
-    public String passwordUser;
-    public String noIdUser;
-    public String namaAppl, jenisPekrjaanAppl, jenisKelaminAppl, alamatAppl, alamatTinggalAppl, emailAppl, agamaAppl, golDarAppl, penyakitKronisAppl;
-    public int noTelpAppl, noTelpIbu, noTelpAyah;
-    public String namaAyah, namaIbu, TTLAyah, TTLIbu, alamatAyah, alamatIbu;
-    public String statusPernikahan, namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, pekerjaanPasangan;
-    static char nameFalse[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '@', '!', '#', '$', '%', '^', '&', '*', '(', ')', '?'};
+   
+    public String userName, passwordUser;
+ 
+    public String namaAppl,TTLAppl, jenisPekrjaanAppl, jenisKelaminAppl, alamatKTPAppl, alamatTinggalAppl, emailAppl, agamaAppl, noKTP, golDarAppl, penyakitKronisAppl;
+    public String noTelpAppl, noTelpIbu, noTelpAyah;
+    public String namaAnak1, namaAnak2,TTLAnak1, TTLAnak2, pendidikanAnak1, pendidikanAnak2,namaAyah, namaIbu, TTLAyah, TTLIbu, alamatAyah, alamatIbu;
+    public String statusPernikahan, namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, pekerjaanPasangan,SD,SMP,SMA,UNIV,AKADEMI,pendidikanNonFormal, status;
+   
+   public String noIdUser;
+// static char nameFalse[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '@', '!', '#', '$', '%', '^', '&', '*', '(', ')', '?'};
 Connection connection;
 
+
+ public String getPasswordUser() {
+        return passwordUser;
+    }
+
+    public void setPasswordUser(String passwordUser) {
+        this.passwordUser = passwordUser;
+    }
     public String getNoIdUser() {
         return noIdUser;
     }
@@ -34,28 +45,121 @@ Connection connection;
         this.noIdUser = noIdUser;
     }
 
-    public static String createNoIdUser() throws SQLException {
-        String query = "select from * Applicant";
-        java.sql.Statement statement = KoneksiDatabase.getConnection().createStatement();
-        java.sql.ResultSet result = statement.executeQuery(query);
-
-        int index = 1;
-
-        while (result.next()) {
-            index++;
-        }
-
-        String getNoIdUser = "APPL" + index;
-        return getNoIdUser;
+    public String getUNIV() {
+        return UNIV;
     }
 
-    public String getPasswordUser() {
-        return passwordUser;
+    public void setUNIV(String UNIV) {
+        this.UNIV = UNIV;
     }
 
-    public void setPasswordUser(String passwordUser) {
-        this.passwordUser = passwordUser;
+    public String getAKADEMI() {
+        return AKADEMI;
     }
+
+    public void setAKADEMI(String AKADEMI) {
+        this.AKADEMI = AKADEMI;
+    }
+
+    public String getSD() {
+        return SD;
+    }
+
+    public void setSD(String SD) {
+        this.SD = SD;
+    }
+
+    public String getSMP() {
+        return SMP;
+    }
+
+    public void setSMP(String SMP) {
+        this.SMP = SMP;
+    }
+
+    public String getSMA() {
+        return SMA;
+    }
+
+    public void setSMA(String SMA) {
+        this.SMA = SMA;
+    }
+
+    public String getPendidikanNonFormal() {
+        return pendidikanNonFormal;
+    }
+
+    public void setPendidikanNonFormal(String pendidikanNonFormal) {
+        this.pendidikanNonFormal = pendidikanNonFormal;
+    }
+
+    public String getPendidikanAnak1() {
+        return pendidikanAnak1;
+    }
+
+    public void setPendidikanAnak1(String pendidikanAnak1) {
+        this.pendidikanAnak1 = pendidikanAnak1;
+    }
+
+    public String getPendidikanAnak2() {
+        return pendidikanAnak2;
+    }
+
+    public void setPendidikanAnak2(String pendidikanAnak2) {
+        this.pendidikanAnak2 = pendidikanAnak2;
+    }
+
+    public String getNamaAnak1() {
+        return namaAnak1;
+    }
+
+    public void setNamaAnak1(String namaAnak1) {
+        this.namaAnak1 = namaAnak1;
+    }
+
+    public String getNamaAnak2() {
+        return namaAnak2;
+    }
+
+    public void setNamaAnak2(String namaAnak2) {
+        this.namaAnak2 = namaAnak2;
+    }
+
+    public String getTTLAnak1() {
+        return TTLAnak1;
+    }
+
+    public void setTTLAnak1(String TTLAnak1) {
+        this.TTLAnak1 = TTLAnak1;
+    }
+
+    public String getTTLAnak2() {
+        return TTLAnak2;
+    }
+
+    public void setTTLAnak2(String TTLAnak2) {
+        this.TTLAnak2 = TTLAnak2;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+   
+
+   
 
     public String getNamaAppl() {
         return namaAppl;
@@ -73,11 +177,11 @@ Connection connection;
         this.jenisPekrjaanAppl = jenisPekrjaanAppl;
     }
 
-    public int getNoTelpAppl() {
+    public String getNoTelpAppl() {
         return noTelpAppl;
     }
 
-    public void setNoTelpAppl(int noTelpAppl) {
+    public void setNoTelpAppl(String noTelpAppl) {
         this.noTelpAppl = noTelpAppl;
     }
 
@@ -89,12 +193,12 @@ Connection connection;
         this.jenisKelaminAppl = jenisKelaminAppl;
     }
 
-    public String getAlamatAppl() {
-        return alamatAppl;
+    public String getAlamatKTPAppl() {
+        return alamatKTPAppl;
     }
 
-    public void setAlamatAppl(String alamatAppl) {
-        this.alamatAppl = alamatAppl;
+    public void setAlamatKTPAppl(String alamatKTPAppl) {
+        this.alamatKTPAppl = alamatKTPAppl;
     }
 
     public String getAlamatTinggalAppl() {
@@ -107,6 +211,14 @@ Connection connection;
 
     public String getEmailAppl() {
         return emailAppl;
+    }
+
+    public String getNoKTP() {
+        return noKTP;
+    }
+
+    public void setNoKTP(String noKTP) {
+        this.noKTP = noKTP;
     }
 
     public void setEmailAppl(String emailAppl) {
@@ -143,6 +255,14 @@ Connection connection;
 
     public void setNamaAyah(String namaAyah) {
         this.namaAyah = namaAyah;
+    }
+
+    public String getTTLAppl() {
+        return TTLAppl;
+    }
+
+    public void setTTLAppl(String TTLAppl) {
+        this.TTLAppl = TTLAppl;
     }
 
     public String getNamaIbu() {
@@ -185,19 +305,19 @@ Connection connection;
         this.alamatIbu = alamatIbu;
     }
 
-    public int getNoTelpAyah() {
+    public String getNoTelpAyah() {
         return noTelpAyah;
     }
 
-    public void setNoTelpAyah(int noTelpAyah) {
+    public void setNoTelpAyah(String noTelpAyah) {
         this.noTelpAyah = noTelpAyah;
     }
 
-    public int getNoTelpIbu() {
+    public String getNoTelpIbu() {
         return noTelpIbu;
     }
 
-    public void setNoTelpIbu(int noTelpIbu) {
+    public void setNoTelpIbu(String noTelpIbu) {
         this.noTelpIbu = noTelpIbu;
     }
 
@@ -249,73 +369,37 @@ Connection connection;
         this.pekerjaanPasangan = pekerjaanPasangan;
     }
 
-    public static char[] getNameFalse() {
-        return nameFalse;
-    }
+//    public static char[] getNameFalse() {
+//        return nameFalse;
+//    }
+//
+//    public static void setNameFalse(char[] nameFalse) {
+//        TabelApplicant.nameFalse = nameFalse;
+//    }
 
-    public static void setNameFalse(char[] nameFalse) {
-        TabelApplicant.nameFalse = nameFalse;
-    }
+//    public boolean isUserNameValid(String namaAppl) {
+//        char karakter;
+//        for (int i = 0; i < namaAppl.length(); i++) {
+//            karakter = namaAppl.charAt(i);
+//            for (int j = 0; j < getNameFalse().length; j++) {
+//                if (karakter == getNameFalse()[j]) {
+//                    return false;
+//                }
+//
+//            }
+//
+//        }
+//        return false;
+//    }
 
-    public boolean isUserNameValid(String namaAppl) {
-        char karakter;
-        for (int i = 0; i < namaAppl.length(); i++) {
-            karakter = namaAppl.charAt(i);
-            for (int j = 0; j < getNameFalse().length; j++) {
-                if (karakter == getNameFalse()[j]) {
-                    return false;
-                }
 
-            }
 
-        }
-        return false;
-    }
-
-    public void AddDataApplicant(String namaAppl, String jenisPekerjaanAppl, int noTelpAppl,
-            String jenisKelaminAppl, String alamatKTPAppl, String alamatTinggalAppl,
-            String emailAppl, String agamaAppl, String golDarAppl, String penyakitKronisAppl,
-            String namaAyah, String namaIbu, String TTLAyah, String TTLIbu, String alamatAyah,
-            String alamatIbu, int noTelpAyah, int noTelpIbu, String statusPernikahan,
-            String namaPasangan, String TTLPasangan, String alamatPasangan,
-            String pendidikanTerakhirPasangan, String pekerjaanPasangan, String keterangan) throws SQLException {
-
-        Connection c = KoneksiDatabase.getConnection();
-        String sql = "insert into applicant values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement stmt = c.prepareStatement(sql);
-        stmt.setString(1, namaAppl);
-        stmt.setString(2, jenisPekerjaanAppl);
-        stmt.setInt(3, noTelpAppl);
-        stmt.setString(4, jenisKelaminAppl);
-        stmt.setString(5, alamatTinggalAppl);
-        stmt.setString(6, emailAppl);
-        stmt.setString(7, agamaAppl);
-        stmt.setString(8, golDarAppl);
-        stmt.setString(9, penyakitKronisAppl);
-        stmt.setString(10, namaAyah);
-        stmt.setString(11, namaIbu);
-        stmt.setString(12, TTLAyah);
-        stmt.setString(13, TTLIbu);
-        stmt.setString(14, alamatAyah);
-        stmt.setString(15, alamatIbu);
-        stmt.setInt(16, noTelpAyah);
-        stmt.setInt(17, noTelpIbu);
-        stmt.setString(18, statusPernikahan);
-        stmt.setString(19, namaPasangan);
-        stmt.setString(21, TTLPasangan);
-        stmt.setString(22, alamatPasangan);
-        stmt.setString(23, pendidikanTerakhirPasangan);
-        stmt.setString(24, pekerjaanPasangan);
-        stmt.setString(25, keterangan);
-        stmt.executeUpdate();
-    }
-
-    public ResultSet TampilDataApplicant() throws SQLException {
-        ResultSet result;
-        String query = "select * from applicant";
-        Statement stmt = connection.createStatement();
-        result = stmt.executeQuery(query);
-        return result;
-    }
+//    public ResultSet TampilDataApplicant() throws SQLException {
+//        ResultSet result;
+//        String query = "select * from applicant";
+//        Statement stmt = connection.createStatement();
+//        result = stmt.executeQuery(query);
+//        return result;
+//    }
 }
 
