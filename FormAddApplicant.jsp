@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <a href="FormSignUpApp.jsp"></a>
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -107,11 +106,11 @@
         <!--/form registrasi identitas-->
         <div class="section-contact">
             <div class="container">
-                <h2 class="second-head">Registrasi Applicant (Tenaga Kerja)</h2>
+                <h2 class="second-head">Tambah Data Applicant (Tenaga Kerja)</h2>
                 <div class="contact-main">
 
                     <div class="col-md-6 contact-grid">
-                        <form action="ServletApplicant" name="myform" id="myform" method="get">
+                        <form action="ServletApplicant" name="myform" id="myform" method="post">
                             <h2>Identitas Diri</h2>
                             <p class="your-para">Username :</p>
                             <input type="text" name="userName" value="isi username tanpa spasi" onfocus="this.value = '';" onblur="if (this.value == '') {
@@ -194,18 +193,7 @@
                         <option value="Pembantu Rumah Tangga">Pembantu Rumah Tangga</option>
                         <option value="Perawat Jompo/Lansia">Perawat Jompo/Lansia</option>
                              </select>
-<!--                            <input name="jenisPekerjaan" value="jenis pekerjaan" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                        this.value = '';
-                                    }">-->
-<!--                            <p class="your-para">Status Pernikahan:</p>
-                            
-                            <input type="radio" name ="statusPernikahan" value ="Belum Menikah"> Belum Menikah<br>
-                            <input type="radio" name ="statusPernikahan" value ="Sudah Menikah"> Sudah Menikah<br>-->
-                            
-<!--                            <input type="radio" name="statusPernikahan" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                        this.value = '';
-                                    }">-->
-<% %>
+
 <!--                             <p class="your-para">Nama Pasangan:</p>
                             <input type="text" name="namaPasangan" value="diisi bila perlu" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
@@ -351,6 +339,12 @@
                                             this.value = '';
                                         }">
   
+                                        <br>
+                                        <br>
+                                        <p class="your-para"><strong>Status/Keterangan Penempatan :</strong></p>
+                                <input type="text" name="status" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                            this.value = '';
+                                        }">
                             <div class="send">
                                 <input type="submit" value="REGISTRASI" >
                             </div>

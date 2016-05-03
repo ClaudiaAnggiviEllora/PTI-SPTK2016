@@ -11,15 +11,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author laura
@@ -44,10 +42,10 @@ public class ServletApplicant extends HttpServlet {
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet ServletApplicant</title>");            
+//            out.println("<title>Servlet testApplicant</title>");            
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("<h1>Servlet ServletApplicant at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Servlet testApplicant at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
 //        } finally {
@@ -67,13 +65,12 @@ public class ServletApplicant extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  processRequest(request, response);
-    
-     String userName = request.getParameter("userName");
+  //    response.setContentType("text/html;charset=UTF-8");
+        String userName= request.getParameter("userName");
         String password= request.getParameter("passwordUser");
-        String namaAppl= request.getParameter("namaAppl");
-        String TTLAppl= request.getParameter("TTLAppl");
-        String jenisKelamin= request.getParameter("jenisKelamin");
+        String namaAppl = request.getParameter("namaAppl");       
+        String TTLAppl = request.getParameter("TTLAppl");
+        String jenisKelamin = request.getParameter("jenisKelamin");
         String alamatTinggal = request.getParameter("alamatTinggal");
         String alamatKTP = request.getParameter("alamatKTP");
         String telepon = request.getParameter("telepon");
@@ -89,75 +86,80 @@ public class ServletApplicant extends HttpServlet {
         String alamatPasangan = request.getParameter("alamatPasangan");
         String pendidikanPasangan =request.getParameter("pendidikanPasangan");
         String pekerjaanPasangan= request.getParameter("pekerjaanPasangan");
-        String namaAnak1= request.getParameter("namaAnak1");
+         String namaAnak1= request.getParameter("namaAnak1");
         String namaAnak2 = request.getParameter("namaAnak2");
         String TTLAnak1=request.getParameter("TTLAnak1");
         String TTLAnak2=request.getParameter("TTLAnak2");
-        String pendidikanAnak1 = request.getParameter("pendidikanAnak1");
+         String pendidikanAnak1 = request.getParameter("pendidikanAnak1");
         String pendidikanAnak2 = request.getParameter("pendidikanAnak2");
-        String namaAyah= request.getParameter("namaAyah");
-        String namaIbu= request.getParameter("namaIbu");
-        String TTLAyah= request.getParameter("TTLAyah");
-        String TTLIbu= request.getParameter("TTLIbu");
-        String alamatAyah= request.getParameter("alamatAyah");
-        String alamatIbu =request.getParameter("alamatIbu");
-        String telpAyah = request.getParameter("telpAyah");
-        String telpIbu = request.getParameter("telpIbu");
-        String SD = request.getParameter("SD");
-        String SMP = request.getParameter("SMP");
+         String namaAyah= request.getParameter("namaAyah");
+         String TTLAyah= request.getParameter("TTLAyah");
+         String alamatAyah= request.getParameter("alamatAyah");
+         String telpAyah = request.getParameter("telpAyah");
+         
+         String namaIbu= request.getParameter("namaIbu");
+         String TTLIbu= request.getParameter("TTLIbu");
+        String alamatIbu= request.getParameter("alamatIbu");
+        String telpIbu= request.getParameter("telpIbu");
+         String SD = request.getParameter("SD");
+         String SMP = request.getParameter("SMP");
         String SMA = request.getParameter("SMA");
-        String UNIV = request.getParameter("UNIV");
-        String AKADEMI = request.getParameter("AKADEMI");
-        String pendidikanNonFormal= request.getParameter("nonFormal");
-        String status = request.getParameter("status");
-        String query;
-        
-        TabelApplicant appl = new TabelApplicant();
+         String UNIV = request.getParameter("UNIV");
+         String AKADEMI = request.getParameter("AKADEMI");
+         String pendidikanNonFormal= request.getParameter("nonFormal");
     
-       appl.setUserName(userName);
-       appl.setPasswordUser(password);
-       appl.setNamaAppl(namaAppl);
-       appl.setTTLAppl(TTLAppl);
-       appl.setJenisKelaminAppl(jenisKelamin);
-       appl.setAlamatTinggalAppl(alamatTinggal); 
-       appl.setAlamatKTPAppl(alamatKTP);
-       appl.setNoTelpAppl(telepon);
-       appl.setEmailAppl(email);
-       appl.setAgamaAppl(agama);
-       appl.setNoKTP(noKTP);
-       appl.setGolDarAppl(golDar);
-       appl.setPenyakitKronisAppl(penyakit);
-       appl.setJenisPekrjaanAppl(jenisPekerjaan);
-       appl.setStatusPernikahan(statusPernikahan);
-       appl.setNamaPasangan(namaPasangan);
-       appl.setTTLPasangan(TTLPasangan);
-       appl.setAlamatPasangan(alamatPasangan);
-       appl.setPendidikanPasangan(pendidikanPasangan);
-       appl.setPekerjaanPasangan(pekerjaanPasangan);
-      appl.setNamaAnak1(namaAnak1);
-      appl.setNamaAnak2(namaAnak2);
-      appl.setTTLAnak1(TTLAnak1);
-      appl.setTTLAnak2(TTLAnak2);
-      appl.setPendidikanAnak1(pendidikanAnak1);
-      appl.setPendidikanAnak2(pendidikanAnak2);
-      appl.setNamaAyah(namaAyah);
-      appl.setNamaIbu(namaIbu);
-       appl.setTTLAyah(TTLAyah);
-       appl.setTTLIbu(TTLIbu);
-       appl.setAlamatAyah(alamatAyah);
-       appl.setAlamatIbu(alamatIbu);
-       appl.setNoTelpAyah(telpAyah);
-       appl.setNoTelpIbu(telpIbu);
-       appl.setSD(SD);
-       appl.setSMP(SMP);
-       appl.setSMA(SMA);
-       appl.setUNIV(UNIV);
-       appl.setAKADEMI(AKADEMI);
-       appl.setPendidikanNonFormal(pendidikanNonFormal);
-       appl.setStatus(status);
-       
+        
+        String query;
+        TabelApplicant app = new TabelApplicant();
+    
+        app.setUserName(userName);
+        app.setPasswordUser(password);
+       app.setNamaAppl(namaAppl);      
+       app.setTTLAppl(TTLAppl);
+       app.setJenisKelaminAppl(jenisKelamin);
+       app.setAlamatTinggalAppl(alamatTinggal);
+       app.setAlamatKTPAppl(alamatKTP);
+       app.setNoTelpAppl(telepon);
+       app.setEmailAppl(email);
+       app.setAgamaAppl(agama);
+       app.setNoKTP(noKTP);
+       app.setGolDarAppl(golDar);
+       app.setPenyakitKronisAppl(penyakit);
+      app.setJenisPekrjaanAppl(jenisPekerjaan);
+       app.setStatusPernikahan(statusPernikahan);
+       app.setNamaPasangan(namaPasangan);
+       app.setTTLPasangan(TTLPasangan);
+       app.setAlamatPasangan(alamatPasangan);
+       app.setPendidikanPasangan(pendidikanPasangan);
+       app.setPekerjaanPasangan(pekerjaanPasangan);
+       app.setNamaAnak1(namaAnak1);
+       app.setNamaAnak2(namaAnak2);
+       app.setTTLAnak1(TTLAnak1);
+       app.setTTLAnak2(TTLAnak2);
+    app.setPendidikanAnak1(pendidikanAnak1);
+       app.setPendidikanAnak2(pendidikanAnak2);
+      
+       app.setNamaAyah(namaAyah);
+      app.setTTLAyah(TTLAyah);
+      app.setAlamatAyah(alamatAyah);
+      app.setNoTelpAyah(telpAyah);
+      
+      app.setNamaIbu(namaIbu);
+     app.setTTLIbu(TTLIbu);
+      app.setAlamatIbu(alamatIbu);
+      
+      app.setNoTelpIbu(telpIbu);
+     
+     app.setSD(SD);
+      app.setSMP(SMP);
+      app.setSMA(SMA);
+      app.setUNIV(UNIV);
+      app.setAKADEMI(AKADEMI);
+      app.setPendidikanNonFormal(pendidikanNonFormal);
+     
+     
       try{
-            PreparedStatement statement;
+          PreparedStatement statement;
             Koneksi dbConn = null;
             Connection sqlConn = null;
             ResultSet resultSet = null;
@@ -165,34 +167,61 @@ public class ServletApplicant extends HttpServlet {
             dbConn = new Koneksi();
             sqlConn = dbConn.getConnection();
             
-            query = "INSERT INTO tabelapplicant (userName, passwordUser, namaAppl, TTLAppl, jenisKelamin, alamatTinggal, alamatKTP, telepon, email, agama, noKTP, golDar,penyakit, jenisPekerjaan, statusPernikahan, namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, pendidikanAnak1, pendidikanAnak2, namaAyah, namaIbu, TTLAyah, TTLIbu, alamatAyah, alamatIbu, telpAyah, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal, status) VALUES('"+appl.getUserName()+"', '"+appl.getPasswordUser()+"','"+ appl.getNamaAppl()+"','"+appl.getTTLAppl()
-                    +"','"+appl.getJenisKelaminAppl()+"','"+appl.getAlamatTinggalAppl()
-                    +"','"+appl.getAlamatKTPAppl()+"','"+appl.getNoTelpAppl()+"','"+appl.getEmailAppl()
-                    +"','"+appl.getAgamaAppl()+"','"+appl.getNoKTP()+"','"+appl.getGolDarAppl()+"','"
-                    +"','"+appl.getPenyakitKronisAppl()+"','"+appl.getJenisPekrjaanAppl()+"','"+appl.getStatusPernikahan()+"','"+appl.getNamaPasangan()
-                    +"','"+appl.getTTLPasangan()+"','"+appl.getAlamatPasangan()
-                    +"','"+appl.getPendidikanPasangan()+"','"+appl.getPekerjaanPasangan()+"','"+appl.getNamaAnak1()
-                    +"','"+appl.getNamaAnak2()+"','"+appl.getTTLAnak1()+"','"+appl.getTTLAnak2()+"','"+appl.getPendidikanAnak1()
-                    +"','"+appl.getPendidikanAnak2()+"','"+appl.getNamaAyah()+"','"+appl.getNamaIbu()
-                    +"','"+appl.getTTLAyah()+"','"+appl.getTTLIbu()+"','"+appl.getAlamatAyah()
-                    +"','"+appl.getAlamatIbu()+"','"+appl.getNoTelpAyah()+"','"+appl.getNoTelpIbu()
-                    +"','"+appl.getSD()+"','"+appl.getSMP()+"','"+appl.getSMA()+"','"+appl.getUNIV()+"','"+appl.getAKADEMI()
-                    +"','"+appl.getPendidikanNonFormal()+"','"+appl.getStatus()+"')";
+//            query = "INSERT INTO tabelapplicant (userName  ,passwordUser, namaAppl, "
+//                    + "TTLAppl, jenisKelamin, alamatTinggal, alamatKTP, telepon, email, "
+//                    + "agama, noKTP, golDar, penyakit, jenisPekerjaan, statusPernikahan, "
+//                    + "namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, "
+//                    + "pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, "
+//                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah"
+//                    + "namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal) VALUES ('"+app.getUserName()+"','"
+//                    +app.getPasswordUser()+"', '"+app.getNamaAppl()+"','"+app.getTTLAppl()
+//                    +"','"+app.getJenisKelaminAppl()+"', '"+app.getAlamatTinggalAppl()
+//                    +"','"+app.getAlamatKTPAppl()+"','"+app.getNoTelpAppl()+"','"
+//                    +app.getEmailAppl()+"','"+app.getAgamaAppl()+"','"+app.getNoKTP()+"','"
+//                    +app.getGolDarAppl()+"','"+app.getPenyakitKronisAppl()+"','"+app.getJenisPekrjaanAppl()+"','"
+//                    +app.getStatusPernikahan()+"','"+app.getNamaPasangan()+"','"+app.getTTLPasangan()+"','"
+//                    +app.getAlamatPasangan()+"','"+app.getPendidikanPasangan()+"','"+app.getPekerjaanPasangan()+"','"
+//                    +app.getNamaAnak1()+"','"+app.getNamaAnak2()+"','"+app.getTTLAnak1()+"','"+app.getTTLAnak2()
+//                    +"','"+app.getPendidikanAnak1()+"','"+app.getPendidikanAnak2()+"','"+app.getNamaAyah()
+//                    +"','"+app.getTTLAyah()+"','"+app.getAlamatAyah()+"','"+app.getNoTelpAyah()+"','"+app.getNamaIbu()
+//                    +"','"+app.getTTLIbu()+"','"+app.getAlamatIbu()+"','"+app.getNoTelpIbu()+"','"+app.getSD()+"','"
+//                    +app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"')";
+          
             
-             statement = sqlConn.prepareStatement(query);
+            query = "INSERT INTO tabelapplicant (userName  ,passwordUser, namaAppl, "
+                    + "TTLAppl, jenisKelamin, alamatTinggal, alamatKTP, telepon, email, "
+                    + "agama, noKTP, golDar, penyakit, jenisPekerjaan, statusPernikahan, "
+                    + "namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, "
+                    + "pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, "
+                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah, namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal) VALUES ('"+app.getUserName()+"','"
+                    +app.getPasswordUser()+"', '"+app.getNamaAppl()+"','"+app.getTTLAppl()
+                    +"','"+app.getJenisKelaminAppl()+"', '"+app.getAlamatTinggalAppl()
+                    +"','"+app.getAlamatKTPAppl()+"','"+app.getNoTelpAppl()+"','"
+                    +app.getEmailAppl()+"','"+app.getAgamaAppl()+"','"+app.getNoKTP()+"','"
+                    +app.getGolDarAppl()+"','"+app.getPenyakitKronisAppl()+"','"+app.getJenisPekrjaanAppl()+"','"
+                    +app.getStatusPernikahan()+"','"+app.getNamaPasangan()+"','"+app.getTTLPasangan()+"','"
+                    +app.getAlamatPasangan()+"','"+app.getPendidikanPasangan()+"','"+app.getPekerjaanPasangan()+"','"
+                    +app.getNamaAnak1()+"','"+app.getNamaAnak2()+"','"+app.getTTLAnak1()+"','"+app.getTTLAnak2()
+                    +"','"+app.getPendidikanAnak1()+"','"+app.getPendidikanAnak2()+"','"+app.getNamaAyah()
+                    +"','"+app.getTTLAyah()+"','"+app.getAlamatAyah()+"','"+app.getNoTelpAyah()+"','"+app.getNamaIbu()
+                    +"','"+app.getTTLIbu()+"','"+app.getAlamatIbu()+"','"+app.getNoTelpIbu()+"','"+app.getSD()
+                    +"','"+app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"')";
+          
+            
+            statement = sqlConn.prepareStatement(query);
             statement.executeUpdate(query);
             
             statement.close();
             sqlConn.close();
-          
             
+           // response.sendRedirect("SignUp_proses.jsp");
             response.sendRedirect("FormLoginUser.jsp");
       
         } catch (SQLException ex) {
             Logger.getLogger(ServletApplicant.class.getName()).log(Level.SEVERE, null, ex);
         } 
-
-    
+     
+      
     }
 
     /**
@@ -206,7 +235,161 @@ public class ServletApplicant extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+       // processRequest(request, response);
+        String userName= request.getParameter("userName");
+        String password= request.getParameter("passwordUser");
+        String namaAppl = request.getParameter("namaAppl");       
+        String TTLAppl = request.getParameter("TTLAppl");
+        String jenisKelamin = request.getParameter("jenisKelamin");
+        String alamatTinggal = request.getParameter("alamatTinggal");
+        String alamatKTP = request.getParameter("alamatKTP");
+        String telepon = request.getParameter("telepon");
+        String email = request.getParameter("email");
+        String agama = request.getParameter("agama");
+        String noKTP = request.getParameter("noKTP");
+        String golDar = request.getParameter("golDar");
+        String penyakit = request.getParameter("penyakit");
+        String jenisPekerjaan = request.getParameter("jenisPekerjaan");
+        String statusPernikahan = request.getParameter("statusPernikahan");
+        String namaPasangan = request.getParameter("namaPasangan");
+        String TTLPasangan = request.getParameter("TTLPasangan");
+        String alamatPasangan = request.getParameter("alamatPasangan");
+        String pendidikanPasangan =request.getParameter("pendidikanPasangan");
+        String pekerjaanPasangan= request.getParameter("pekerjaanPasangan");
+         String namaAnak1= request.getParameter("namaAnak1");
+        String namaAnak2 = request.getParameter("namaAnak2");
+        String TTLAnak1=request.getParameter("TTLAnak1");
+        String TTLAnak2=request.getParameter("TTLAnak2");
+         String pendidikanAnak1 = request.getParameter("pendidikanAnak1");
+        String pendidikanAnak2 = request.getParameter("pendidikanAnak2");
+         String namaAyah= request.getParameter("namaAyah");
+         String TTLAyah= request.getParameter("TTLAyah");
+         String alamatAyah= request.getParameter("alamatAyah");
+         String telpAyah = request.getParameter("telpAyah");
+         
+         String namaIbu= request.getParameter("namaIbu");
+         String TTLIbu= request.getParameter("TTLIbu");
+        String alamatIbu= request.getParameter("alamatIbu");
+        String telpIbu= request.getParameter("telpIbu");
+         String SD = request.getParameter("SD");
+         String SMP = request.getParameter("SMP");
+        String SMA = request.getParameter("SMA");
+         String UNIV = request.getParameter("UNIV");
+         String AKADEMI = request.getParameter("AKADEMI");
+         String pendidikanNonFormal= request.getParameter("nonFormal");
+    String status = request.getParameter("status");
+        
+        String query;
+        TabelApplicant app = new TabelApplicant();
+    
+        app.setUserName(userName);
+        app.setPasswordUser(password);
+       app.setNamaAppl(namaAppl);      
+       app.setTTLAppl(TTLAppl);
+       app.setJenisKelaminAppl(jenisKelamin);
+       app.setAlamatTinggalAppl(alamatTinggal);
+       app.setAlamatKTPAppl(alamatKTP);
+       app.setNoTelpAppl(telepon);
+       app.setEmailAppl(email);
+       app.setAgamaAppl(agama);
+       app.setNoKTP(noKTP);
+       app.setGolDarAppl(golDar);
+       app.setPenyakitKronisAppl(penyakit);
+      app.setJenisPekrjaanAppl(jenisPekerjaan);
+       app.setStatusPernikahan(statusPernikahan);
+       app.setNamaPasangan(namaPasangan);
+       app.setTTLPasangan(TTLPasangan);
+       app.setAlamatPasangan(alamatPasangan);
+       app.setPendidikanPasangan(pendidikanPasangan);
+       app.setPekerjaanPasangan(pekerjaanPasangan);
+       app.setNamaAnak1(namaAnak1);
+       app.setNamaAnak2(namaAnak2);
+       app.setTTLAnak1(TTLAnak1);
+       app.setTTLAnak2(TTLAnak2);
+    app.setPendidikanAnak1(pendidikanAnak1);
+       app.setPendidikanAnak2(pendidikanAnak2);
+      
+       app.setNamaAyah(namaAyah);
+      app.setTTLAyah(TTLAyah);
+      app.setAlamatAyah(alamatAyah);
+      app.setNoTelpAyah(telpAyah);
+      
+      app.setNamaIbu(namaIbu);
+     app.setTTLIbu(TTLIbu);
+      app.setAlamatIbu(alamatIbu);
+      
+      app.setNoTelpIbu(telpIbu);
+     
+     app.setSD(SD);
+      app.setSMP(SMP);
+      app.setSMA(SMA);
+      app.setUNIV(UNIV);
+      app.setAKADEMI(AKADEMI);
+      app.setPendidikanNonFormal(pendidikanNonFormal);
+     app.setStatus(status);
+     
+      try{
+          PreparedStatement statement;
+            Koneksi dbConn = null;
+            Connection sqlConn = null;
+            ResultSet resultSet = null;
+
+            dbConn = new Koneksi();
+            sqlConn = dbConn.getConnection();
+            
+//            query = "INSERT INTO tabelapplicant (userName  ,passwordUser, namaAppl, "
+//                    + "TTLAppl, jenisKelamin, alamatTinggal, alamatKTP, telepon, email, "
+//                    + "agama, noKTP, golDar, penyakit, jenisPekerjaan, statusPernikahan, "
+//                    + "namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, "
+//                    + "pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, "
+//                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah"
+//                    + "namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal) VALUES ('"+app.getUserName()+"','"
+//                    +app.getPasswordUser()+"', '"+app.getNamaAppl()+"','"+app.getTTLAppl()
+//                    +"','"+app.getJenisKelaminAppl()+"', '"+app.getAlamatTinggalAppl()
+//                    +"','"+app.getAlamatKTPAppl()+"','"+app.getNoTelpAppl()+"','"
+//                    +app.getEmailAppl()+"','"+app.getAgamaAppl()+"','"+app.getNoKTP()+"','"
+//                    +app.getGolDarAppl()+"','"+app.getPenyakitKronisAppl()+"','"+app.getJenisPekrjaanAppl()+"','"
+//                    +app.getStatusPernikahan()+"','"+app.getNamaPasangan()+"','"+app.getTTLPasangan()+"','"
+//                    +app.getAlamatPasangan()+"','"+app.getPendidikanPasangan()+"','"+app.getPekerjaanPasangan()+"','"
+//                    +app.getNamaAnak1()+"','"+app.getNamaAnak2()+"','"+app.getTTLAnak1()+"','"+app.getTTLAnak2()
+//                    +"','"+app.getPendidikanAnak1()+"','"+app.getPendidikanAnak2()+"','"+app.getNamaAyah()
+//                    +"','"+app.getTTLAyah()+"','"+app.getAlamatAyah()+"','"+app.getNoTelpAyah()+"','"+app.getNamaIbu()
+//                    +"','"+app.getTTLIbu()+"','"+app.getAlamatIbu()+"','"+app.getNoTelpIbu()+"','"+app.getSD()+"','"
+//                    +app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"')";
+          
+            
+            query = "INSERT INTO tabelapplicant (userName  ,passwordUser, namaAppl, "
+                    + "TTLAppl, jenisKelamin, alamatTinggal, alamatKTP, telepon, email, "
+                    + "agama, noKTP, golDar, penyakit, jenisPekerjaan, statusPernikahan, "
+                    + "namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, "
+                    + "pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, "
+                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah, namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal, status) VALUES ('"+app.getUserName()+"','"
+                    +app.getPasswordUser()+"', '"+app.getNamaAppl()+"','"+app.getTTLAppl()
+                    +"','"+app.getJenisKelaminAppl()+"', '"+app.getAlamatTinggalAppl()
+                    +"','"+app.getAlamatKTPAppl()+"','"+app.getNoTelpAppl()+"','"
+                    +app.getEmailAppl()+"','"+app.getAgamaAppl()+"','"+app.getNoKTP()+"','"
+                    +app.getGolDarAppl()+"','"+app.getPenyakitKronisAppl()+"','"+app.getJenisPekrjaanAppl()+"','"
+                    +app.getStatusPernikahan()+"','"+app.getNamaPasangan()+"','"+app.getTTLPasangan()+"','"
+                    +app.getAlamatPasangan()+"','"+app.getPendidikanPasangan()+"','"+app.getPekerjaanPasangan()+"','"
+                    +app.getNamaAnak1()+"','"+app.getNamaAnak2()+"','"+app.getTTLAnak1()+"','"+app.getTTLAnak2()
+                    +"','"+app.getPendidikanAnak1()+"','"+app.getPendidikanAnak2()+"','"+app.getNamaAyah()
+                    +"','"+app.getTTLAyah()+"','"+app.getAlamatAyah()+"','"+app.getNoTelpAyah()+"','"+app.getNamaIbu()
+                    +"','"+app.getTTLIbu()+"','"+app.getAlamatIbu()+"','"+app.getNoTelpIbu()+"','"+app.getSD()
+                    +"','"+app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"','"+app.getStatus()+"')";
+          
+            
+            statement = sqlConn.prepareStatement(query);
+            statement.executeUpdate(query);
+            
+            statement.close();
+            sqlConn.close();
+            
+           // response.sendRedirect("SignUp_proses.jsp");
+            response.sendRedirect("SelamatDatang.jsp");
+      
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletApplicant.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
