@@ -62,10 +62,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="menu"></span>
                     <div class="top-menu">
                         <ul class="cl-effect-16">
-                            <li><a class="active" href="Home.jsp" data-hover="HOME">HOME</a></li> 
-                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
-                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
-                            <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
+                           <li><a  href="Home.jsp" data-hover="HOME">HOME</a></li> 
+                            <li><a href="about.html" data-hover="ABOUT">ABOUT</a></li>
+
+
+
+                            <li><a href="FormAddInfoLoker.jsp"data-hover="TAMBAH INFORMASI LOKER">TAMBAH INFORMASI LOKER </a></li>
+<li><a href="FormAddApplicant.jsp"data-hover="TAMBAH INFORMASI LOKER">TAMBAH DATA APPLICANT (TENAGA KERJA) </a></li>
+                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOKER">INFORMASI LOKER</a></li>
+                            <li><a href="" data-hover="DATA PENDAFTAR LOKER">DATA PENDAFTAR LOKER </a></li>
+                             <li><a href="FormPasangIklan.jsp" data-hover="DATA PEMASANGAN IKLAN LOKER">DATA PEMASANGAN IKLAN LOKER</a></li>
+ <li><a href="" data-hover="HAPUS LOKER">HAPUS LOKER </a></li>
+  <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT </a></li>
                             
                         </ul>
                     </div>
@@ -87,6 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href=""><h1>CV. Putra Harapan Baru Edi Daya Group</h1></a>
                         <h2> Jasa Penyalur Tenaga Kerja</h2>
                         <p> Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
+                        <h3>Info Lowongan Kerja </h3>
                         <%
             Statement statement;
             Koneksi dbConn = null;
@@ -100,63 +109,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             String query;
             String userName = (String) session.getAttribute("userName");
 
-            query = "select namaAppl from tabelapplicant where userName='" + userName + "' ";
+            query = "select * from tabelloker where keterangan='sudah di post' ";
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
         %>
         <br>
         
-        <h3>Selamat Datang <%=resultSet.getString("namaAppl")%></h3>
-                        <%}%>
+        
+         <h3><%=resultSet.getString("jenisPekerjaan")%></h3>
+         <p>spesifikasi pekerjaan : <%=resultSet.getString("job")%></p>
+                                <p> owner : <%=resultSet.getString("owner")%>
+                                <p>No KTP : <%=resultSet.getString("noKTP")%>
+                                <p>NPWP : <%=resultSet.getString("NPWP")%>
+                                <p>No Telpon : <%=resultSet.getString("noTelp")%>
+                                <p>Perusahaan : <%=resultSet.getString("perusahaan")%> 
+                                <p>Lokasi penempatan : <%=resultSet.getString("penempatan")%>
+                                <p>Syarat : <%=resultSet.getString("syarat")%></p>
+                                <p>Fasilitas : <%=resultSet.getString("fasilitas")%></p>     
+                                <p>kode iklan: <%=resultSet.getString("kodeIklan")%></p>
+        
+        
+        
+        <% }%>
                     </div>
-                    <div class="header-top-right">
-                       
-                    </div>
-                    <div class="clearfix"> </div>
+                   
                 </div>
             </div>
         </div>
-        <div class="banner">
-<!--            <div class="container">
-                
-                banner
-                <script src="js/responsiveslides.min.js"></script>
-                <script>
-                        // You can also use "$(window).load(function() {"
-                        $(function () {
-                            // Slideshow 4
-                            $("#slider4").responsiveSlides({
-                                auto: true,
-                                pager: true,
-                                nav: true,
-                                speed: 500,
-                                namespace: "callbacks",
-                                before: function () {
-                                    $('.events').append("<li>before event fired.</li>");
-                                },
-                                after: function () {
-                                    $('.events').append("<li>after event fired.</li>");
-                                }
-                            });
-                        });
-                </script>
-            </div>-->
-        </div>
+        
         <!--welcome/sekilas tentang edi daya group-->
-        <div class="welcome">
-            <div class="container">
-                <h2>EDI DAYA GROUP </h2>
-                <p><strong>EDI DAYA GROUP</strong> sebagai salah satu perusahaan yang bergerak dalam bidang 
-                    penyediaan jasa tenaga kerja bertujuan membantu menyediakan tenaga kerja yang professional 
-                    di bidangnya dan telah dilengkapi dengan ijin dari instansi Pemerintah.
-                    <strong>EDI DAYA GROUP</strong> berkomitmen untuk menempatkan tenaga kerja  
-                    yang berkualitas sehingga memudahkan penanganan dan pengelolaan , 
-                    dan klien bisa lebih berkonsentrasi pada pengembangan lainnya.
-                </p>
-
-            </div>
-        </div>
-        <!--//welcome-->
+        
 
         <!--/footer/info kontak dan alamat-->
         <div class="footer">

@@ -1,9 +1,10 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%-- 
+    Document   : addLokersukses
+    Created on : May 4, 2016, 1:01:06 AM
+    Author     : laura
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="modelAndControl.Koneksi"%>
@@ -13,7 +14,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <%! Statement statement;%>
 <%! ResultSet result;%>
 <% Koneksi conn = new Koneksi();%>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+
+<%-- 
+    Document   : FormAddInfoLoker
+    Created on : May 3, 2016, 8:46:42 PM
+    Author     : laura
+--%>
+
+
+<%
+    Statement statement;
+    Koneksi dbConn = null;
+    Connection sqlConn = null;
+    ResultSet resultSet = null;
+
+    dbConn = new Koneksi();
+    sqlConn = dbConn.getConnection();
+
+    statement = sqlConn.createStatement();
+    String query;
+    String kode = (String) session.getAttribute("kodeIklan");
+    query = "select kodeIklan from tabelloker where kodeIklan='" + kode + "'";
+    resultSet = statement.executeQuery(query);
+%>
 <html>
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
@@ -62,10 +86,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="menu"></span>
                     <div class="top-menu">
                         <ul class="cl-effect-16">
-                            <li><a class="active" href="Home.jsp" data-hover="HOME">HOME</a></li> 
-                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
-                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
-                            <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
+                           <li><a  href="Home.jsp" data-hover="HOME">HOME</a></li> 
+                            <li><a href="about.html" data-hover="ABOUT">ABOUT</a></li>
+
+
+
+                            <li><a href="FormAddInfoLoker.jsp"data-hover="TAMBAH INFORMASI LOKER">TAMBAH INFORMASI LOKER </a></li>
+<li><a href="FormAddApplicant.jsp"data-hover="TAMBAH INFORMASI LOKER">TAMBAH DATA APPLICANT (TENAGA KERJA) </a></li>
+                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOKER">INFORMASI LOKER</a></li>
+                            <li><a href="" data-hover="DATA PENDAFTAR LOKER">DATA PENDAFTAR LOKER </a></li>
+                             <li><a href="FormPasangIklan.jsp" data-hover="DATA PEMASANGAN IKLAN LOKER">DATA PEMASANGAN IKLAN LOKER</a></li>
+ <li><a href="" data-hover="HAPUS LOKER">HAPUS LOKER </a></li>
+  <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT </a></li>
                             
                         </ul>
                     </div>
@@ -87,75 +119,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href=""><h1>CV. Putra Harapan Baru Edi Daya Group</h1></a>
                         <h2> Jasa Penyalur Tenaga Kerja</h2>
                         <p> Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
-                        <%
-            Statement statement;
-            Koneksi dbConn = null;
-            Connection sqlConn = null;
-            ResultSet resultSet = null;
-
-            dbConn = new Koneksi();
-            sqlConn = dbConn.getConnection();
-
-            statement = sqlConn.createStatement();
-            String query;
-            String userName = (String) session.getAttribute("userName");
-
-            query = "select namaAppl from tabelapplicant where userName='" + userName + "' ";
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-        %>
+                      
         <br>
         
-        <h3>Selamat Datang <%=resultSet.getString("namaAppl")%></h3>
-                        <%}%>
+        <h3><font color="blue">Lowongan kerja berhasil ditambahkan
+            dengan kode <%=resultSet.next() ? resultSet.getString(1) : null%></font></h3>
+                        
                     </div>
-                    <div class="header-top-right">
-                       
-                    </div>
-                    <div class="clearfix"> </div>
+                    
                 </div>
             </div>
         </div>
-        <div class="banner">
-<!--            <div class="container">
-                
-                banner
-                <script src="js/responsiveslides.min.js"></script>
-                <script>
-                        // You can also use "$(window).load(function() {"
-                        $(function () {
-                            // Slideshow 4
-                            $("#slider4").responsiveSlides({
-                                auto: true,
-                                pager: true,
-                                nav: true,
-                                speed: 500,
-                                namespace: "callbacks",
-                                before: function () {
-                                    $('.events').append("<li>before event fired.</li>");
-                                },
-                                after: function () {
-                                    $('.events').append("<li>after event fired.</li>");
-                                }
-                            });
-                        });
-                </script>
-            </div>-->
-        </div>
+       
         <!--welcome/sekilas tentang edi daya group-->
-        <div class="welcome">
-            <div class="container">
-                <h2>EDI DAYA GROUP </h2>
-                <p><strong>EDI DAYA GROUP</strong> sebagai salah satu perusahaan yang bergerak dalam bidang 
-                    penyediaan jasa tenaga kerja bertujuan membantu menyediakan tenaga kerja yang professional 
-                    di bidangnya dan telah dilengkapi dengan ijin dari instansi Pemerintah.
-                    <strong>EDI DAYA GROUP</strong> berkomitmen untuk menempatkan tenaga kerja  
-                    yang berkualitas sehingga memudahkan penanganan dan pengelolaan , 
-                    dan klien bisa lebih berkonsentrasi pada pengembangan lainnya.
-                </p>
-
-            </div>
-        </div>
+       
         <!--//welcome-->
 
         <!--/footer/info kontak dan alamat-->
@@ -212,3 +189,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     </body>
 </html
+
+<!--<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+    </head>
+    <body>
+
+        <small>Lowongan kerja berhasil ditambahkan
+            dengan kode 
+        </small>
+
+
+    </body>
+</html>-->

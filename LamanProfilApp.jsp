@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<!DOCTYPE HTML>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="modelAndControl.Koneksi"%>
@@ -13,13 +14,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <%! Statement statement;%>
 <%! ResultSet result;%>
 <% Koneksi conn = new Koneksi();%>
-<!DOCTYPE HTML>
 <html>
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="Legalized Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
         <link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
@@ -38,20 +39,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 });
             });
         </script>
-        <!--gallery-->
-        <script src="js/jquery.chocolat.js"></script>
-        <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="all" />
-        <!--light-box-files -->
-        <script type="text/javascript">
-            $(function () {
-                $('#example1 a').Chocolat();
-            });
-        </script>
-        <script type="text/javascript">
-            $(function () {
-                $('#portfolio a').Chocolat();
-            });
-        </script>
 
     </head>
     <body>
@@ -62,14 +49,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="menu"></span>
                     <div class="top-menu">
                         <ul class="cl-effect-16">
-                            <li><a class="active" href="Home.jsp" data-hover="HOME">HOME</a></li> 
-                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
-                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
+                            <li><a href="LamanApplicant.jsp" data-hover="HOME">HOME</a></li> 
+                            <li><a href="LamanProfilApp.jsp" class="active" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
+                            <li><a href="" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA</a></li> 
                             <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
-                            
+                           
                         </ul>
                     </div>
-                    <!-- script-untuk-menu -->
+                    <!-- script-for-menu -->
                     <script>
                         $("span.menu").click(function () {
                             $(".top-menu").slideToggle("slow", function () {
@@ -84,10 +71,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="header-middle">
                 <div class="container">
                     <div class="logo">
-                        <a href=""><h1>CV. Putra Harapan Baru Edi Daya Group</h1></a>
+                        <a href="Home.jsp"><h1>CV. Putra Harapan Baru Edi Daya Group</h1></a>
                         <h2> Jasa Penyalur Tenaga Kerja</h2>
-                        <p> Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
-                        <%
+                        <p> Jl. Kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
+                    </div>
+                   
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+
+        </div>
+      
+        <!--Profil Applicant-->
+        <%
             Statement statement;
             Koneksi dbConn = null;
             Connection sqlConn = null;
@@ -100,65 +96,81 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             String query;
             String userName = (String) session.getAttribute("userName");
 
-            query = "select namaAppl from tabelapplicant where userName='" + userName + "' ";
+            query = "select namaAppl, passwordUser, TTLAppl, telepon, alamatTinggal from tabelapplicant where userName='" + userName + "' ";
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
         %>
-        <br>
-        
-        <h3>Selamat Datang <%=resultSet.getString("namaAppl")%></h3>
-                        <%}%>
+        <div class="about">
+            <div class="container">
+                <h3 class="tittle">Data Profil</h3>
+                <div class="about-top">
+                    <!--				       <div class="col-md-5 ab-text">
+                                                                 <img src="images/ab.jpg" alt=""/>
+                                                                     <div class="quote-author-info padding5"><p>There are many variations of passages of Lorem Ipsum available, but the majority some lorem.</p>
+                                                                    <div class="author-title"><span class="author-designation">Advocate,</span> Joseph</div>
+                                                                    </div>
+                                                               </div>-->
+                    <div class="col-md-7 info">
+                        <section class="ac-container">
+
+                            <div>  
+                                <label for="ac-1">Nama : <%=resultSet.getString("namaAppl")%></label>
+
+                            </div>
+                            <div>
+                                
+                                <label for="ac-1">Password : <%=resultSet.getString("passwordUser")%></label>
+
+                            </div>
+                            <div>
+                              
+                                <label for="ac-1">Tempat Tanggal Lahir : <%=resultSet.getString("TTLAppl")%></label>
+
+                            </div>
+                            <div>
+                               
+                                <label for="ac-1">Telepon : <%=resultSet.getString("telepon")%></label>
+
+                            </div>
+                            <div>
+                                
+                                <label for="ac-1">Alamat Tinggal :<%=resultSet.getString("alamatTinggal")%></label>
+
+                            </div> 
+                      
+                            
+                            <% }%>
+
+                            
+                        </section>
+<form action="EditProfilApp.jsp">
+                                <div class="send">
+                                    <input type="submit" value="Edit Profil" >
+                                </div>
+                            </form>
                     </div>
-                    <div class="header-top-right">
-                       
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--/contact-->
+<!--        <div class="section-contact">
+            <div class="container">
+                <h2 class="second-head">Data Profil</h2>
+                <div class="contact-main">
+
+                    <div class="col-md-6 contact-grid">
+                    
+
                     </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
-        </div>
-        <div class="banner">
-<!--            <div class="container">
-                
-                banner
-                <script src="js/responsiveslides.min.js"></script>
-                <script>
-                        // You can also use "$(window).load(function() {"
-                        $(function () {
-                            // Slideshow 4
-                            $("#slider4").responsiveSlides({
-                                auto: true,
-                                pager: true,
-                                nav: true,
-                                speed: 500,
-                                namespace: "callbacks",
-                                before: function () {
-                                    $('.events').append("<li>before event fired.</li>");
-                                },
-                                after: function () {
-                                    $('.events').append("<li>after event fired.</li>");
-                                }
-                            });
-                        });
-                </script>
-            </div>-->
-        </div>
-        <!--welcome/sekilas tentang edi daya group-->
-        <div class="welcome">
-            <div class="container">
-                <h2>EDI DAYA GROUP </h2>
-                <p><strong>EDI DAYA GROUP</strong> sebagai salah satu perusahaan yang bergerak dalam bidang 
-                    penyediaan jasa tenaga kerja bertujuan membantu menyediakan tenaga kerja yang professional 
-                    di bidangnya dan telah dilengkapi dengan ijin dari instansi Pemerintah.
-                    <strong>EDI DAYA GROUP</strong> berkomitmen untuk menempatkan tenaga kerja  
-                    yang berkualitas sehingga memudahkan penanganan dan pengelolaan , 
-                    dan klien bisa lebih berkonsentrasi pada pengembangan lainnya.
-                </p>
+        </div>-->
 
-            </div>
-        </div>
-        <!--//welcome-->
 
-        <!--/footer/info kontak dan alamat-->
         <div class="footer">
             <div class="container">
                 <div class="footer-top">
@@ -190,10 +202,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
         </div>
         <div class="copy">
-            <p>&copy; 2016 Edi Daya Group. All Rights Reserved </p>
+          <p>&copy; 2016 Edi Daya Group. All Rights Reserved </p>
         </div>
         <!--//footer-->
-        <!--start-smooth-scrolling-->
+        <!--start-smoth-scrolling-->
         <script type="text/javascript">
             $(document).ready(function () {
                 /*
@@ -204,11 +216,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                  easingType: 'linear' 
                  };
                  */
+
                 $().UItoTop({easingType: 'easeOutQuart'});
+
             });
         </script>
         <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
 
     </body>
-</html
+</html>

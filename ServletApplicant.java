@@ -157,6 +157,10 @@ public class ServletApplicant extends HttpServlet {
       app.setAKADEMI(AKADEMI);
       app.setPendidikanNonFormal(pendidikanNonFormal);
      
+     TabelLogin login = new TabelLogin();
+     
+     login.setUserName(userName);
+     login.setPasswordUser(password);
      
       try{
           PreparedStatement statement;
@@ -193,7 +197,7 @@ public class ServletApplicant extends HttpServlet {
                     + "agama, noKTP, golDar, penyakit, jenisPekerjaan, statusPernikahan, "
                     + "namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, "
                     + "pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, "
-                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah, namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal) VALUES ('"+app.getUserName()+"','"
+                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah, namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal, role) VALUES ('"+app.getUserName()+"','"
                     +app.getPasswordUser()+"', '"+app.getNamaAppl()+"','"+app.getTTLAppl()
                     +"','"+app.getJenisKelaminAppl()+"', '"+app.getAlamatTinggalAppl()
                     +"','"+app.getAlamatKTPAppl()+"','"+app.getNoTelpAppl()+"','"
@@ -205,12 +209,16 @@ public class ServletApplicant extends HttpServlet {
                     +"','"+app.getPendidikanAnak1()+"','"+app.getPendidikanAnak2()+"','"+app.getNamaAyah()
                     +"','"+app.getTTLAyah()+"','"+app.getAlamatAyah()+"','"+app.getNoTelpAyah()+"','"+app.getNamaIbu()
                     +"','"+app.getTTLIbu()+"','"+app.getAlamatIbu()+"','"+app.getNoTelpIbu()+"','"+app.getSD()
-                    +"','"+app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"')";
+                    +"','"+app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"','applicant')";
           
-            
+            String query2 = "insert into tabellogin (userName, passwordUser, role) values ('"+login.getUserName()+"','"+login.getPasswordUser()+"','applicant')";
+     
             statement = sqlConn.prepareStatement(query);
             statement.executeUpdate(query);
-            
+           
+            statement = sqlConn.prepareStatement(query2);
+            statement.executeUpdate(query2);
+           
             statement.close();
             sqlConn.close();
             
@@ -363,7 +371,7 @@ public class ServletApplicant extends HttpServlet {
                     + "agama, noKTP, golDar, penyakit, jenisPekerjaan, statusPernikahan, "
                     + "namaPasangan, TTLPasangan, alamatPasangan, pendidikanPasangan, "
                     + "pekerjaanPasangan, namaAnak1, namaAnak2, TTLAnak1, TTLAnak2, "
-                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah, namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal, status) VALUES ('"+app.getUserName()+"','"
+                    + "pendidikanAnak1, pendidikanAnak2, namaAyah, TTLAyah, alamatAyah, telpAyah, namaIbu, TTLIbu, alamatIbu, telpIbu, SD, SMP, SMA, UNIV, AKADEMI, pendidikanNonFormal, status, role) VALUES ('"+app.getUserName()+"','"
                     +app.getPasswordUser()+"', '"+app.getNamaAppl()+"','"+app.getTTLAppl()
                     +"','"+app.getJenisKelaminAppl()+"', '"+app.getAlamatTinggalAppl()
                     +"','"+app.getAlamatKTPAppl()+"','"+app.getNoTelpAppl()+"','"
@@ -375,7 +383,7 @@ public class ServletApplicant extends HttpServlet {
                     +"','"+app.getPendidikanAnak1()+"','"+app.getPendidikanAnak2()+"','"+app.getNamaAyah()
                     +"','"+app.getTTLAyah()+"','"+app.getAlamatAyah()+"','"+app.getNoTelpAyah()+"','"+app.getNamaIbu()
                     +"','"+app.getTTLIbu()+"','"+app.getAlamatIbu()+"','"+app.getNoTelpIbu()+"','"+app.getSD()
-                    +"','"+app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"','"+app.getStatus()+"')";
+                    +"','"+app.getSMP()+"','"+app.getSMA()+"','"+app.getUNIV()+"','"+app.getAKADEMI()+"','"+app.getPendidikanNonFormal()+"','"+app.getStatus()+"','applicant')";
           
             
             statement = sqlConn.prepareStatement(query);
@@ -384,6 +392,7 @@ public class ServletApplicant extends HttpServlet {
             statement.close();
             sqlConn.close();
             
+            //request.getSession().setAttribute("userName", userName);
            // response.sendRedirect("SignUp_proses.jsp");
             response.sendRedirect("SelamatDatang.jsp");
       

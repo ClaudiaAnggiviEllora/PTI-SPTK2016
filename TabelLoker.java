@@ -1,5 +1,5 @@
 
-package pti_sptk;
+package modelAndControl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +12,13 @@ import java.sql.Statement;
  * @author Sukses
  */
 public class TabelLoker {
+    public String tanggal;
+    public String jenisPekerjaan;
     public String job;
     public String owner;
     public String noKTP;
     public String NPWP; 
-    public int noTelp;
+    public String noTelp;
     public String perusahaan;
     public String penempatan; 
     public String syarat; 
@@ -27,8 +29,37 @@ public class TabelLoker {
     
     
     Connection connection;
+    
     public TabelLoker(Connection koneksi) {
         this.connection = koneksi;
+    }
+
+    TabelLoker() {
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    public static TabelLoker getKoneksi() throws SQLException {
+        TabelLoker data = new TabelLoker(Koneksi.getConnection());
+        return data;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    
+    
+    public String getJenisPekerjaan() {
+        return jenisPekerjaan;
+    }
+
+    public void setJenisPekerjaan(String jenisPekerjaan) {
+        this.jenisPekerjaan = jenisPekerjaan;
     }
     
     public String getKeterangan() {
@@ -71,11 +102,11 @@ public class TabelLoker {
         this.NPWP = NPWP;
     }
 
-    public int getNoTelp() {
+    public String getNoTelp() {
         return noTelp;
     }
 
-    public void setNoTelp(int noTelp) {
+    public void setNoTelp(String noTelp) {
         this.noTelp = noTelp;
     }
 
@@ -119,24 +150,19 @@ public class TabelLoker {
         this.kodeIklan = kodeIklan;
     }
     
-    public void AddInfoLoker(String job,String owner,String noKTP, String NPWP, int noTelp, String perusahaan, String penempatan, String syarat,String fasilitas, String keterangan, 
-     String kodeIklan) throws SQLException {
-        Connection c = KoneksiDatabase.getConnection();
-        String sql = "insert into loker values (?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement stmt = c.prepareStatement(sql);
-        stmt.setString(1, job);
-        stmt.setString(2, owner);
-        stmt.setString(3, noKTP);
-        stmt.setString(4, NPWP);
-        stmt.setInt(5, noTelp);
-        stmt.setString(6, perusahaan);
-       stmt.setString(7, penempatan);
-        stmt.setString(8, syarat);
-        stmt.setString(9, fasilitas);
-      stmt.setString(10, keterangan);
-              stmt.setString(11, kodeIklan);
-      
-    stmt.executeUpdate();
+    public static String createId() throws SQLException {
+        String query = "select * from tabelloker";
+        java.sql.Statement statement = Koneksi.getConnection().createStatement();
+        java.sql.ResultSet result = statement.executeQuery(query);
+
+        int index = 1;
+
+        while (result.next()) {
+            index++;
+        }
+
+        String getId = "LOKER0000 " + index;
+        return getId;
     }
     public ResultSet LihatDataLoker() throws SQLException {
         ResultSet result;
@@ -148,7 +174,7 @@ public class TabelLoker {
     public ResultSet kodeIklan() throws SQLException {
         ResultSet result;
         Statement stmt = connection.createStatement();
-        String query = "SELECT kode_iklan  from konfirmasi";
+        String query = "SELECT kodeIklan  from tabelLoker";
         result = stmt.executeQuery(query);
         return result;
     }

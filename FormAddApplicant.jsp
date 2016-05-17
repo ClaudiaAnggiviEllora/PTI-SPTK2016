@@ -44,7 +44,13 @@
                 $('#portfolio a').Chocolat();
             });
         </script>
-
+ <style type="text/css" >
+            BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
+            A{font-family: Arial,Verdana,Helvetica, sans-serif;}
+            B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
+            .error_strings{ font-family:Verdana; font-size:14px; color:#660000;}
+        </style><script language="JavaScript" src="gen_validatorv4.js"
+        type="text/javascript" ></script>
     </head>
     <body>
         <!--start-home-->
@@ -59,9 +65,12 @@
 
 
 
-                            <li><a class="active" data-hover="REGISTER">REGISTER <select class="sub-menu"><option  value="applicant"> Applicant (Tenaga Kerja)</option>
-                                        <option value="customer">Customer (Pengguna Jasa)</option>
-                                    </select></a></li>
+                            <li><a class="active" data-hover="REGISTER">REGISTER
+                                                                            <ul>
+                                        <a href="Home.jsp" value="applicant"> Applicant (Tenaga Kerja)</a>
+                                        </ul>
+                                        <a href="blog.html" value="customer">Customer (Pengguna Jasa)</a>
+                                    </a></li>
 
                             <li><a href="typography.html" data-hover="LOGIN">LOGIN</a></li>
                             <li><a href="areas.html" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
@@ -110,7 +119,7 @@
                 <div class="contact-main">
 
                     <div class="col-md-6 contact-grid">
-                        <form action="ServletApplicant" name="myform" id="myform" method="post">
+                        <form action="testApplicant" name="myform" id="myform" method="post">
                             <h2>Identitas Diri</h2>
                             <p class="your-para">Username :</p>
                             <input type="text" name="userName" value="isi username tanpa spasi" onfocus="this.value = '';" onblur="if (this.value == '') {
@@ -352,31 +361,48 @@
                         <script language="JavaScript" type="text/javascript">//<![CDATA[
 //You should create the validator only after the definition of the HTML form
                             var frmvalidator = new Validator("myform");
+                             frmvalidator.addValidation("userName", "req", "masukkan username");
+                            frmvalidator.addValidation("userName", "maxlen=40", "maksimal nama 40 karakter");
+                            frmvalidator.addValidation("userName", "alnum", "nama tidak boleh ada spasi");
+                            
+                            frmvalidator.addValidation("email", "req", "masukkan alamat email");
+                            frmvalidator.addValidation("email", "maxlen=40", "maksimal nama 30 karakter");
+                            frmvalidator.addValidation("email", "email", "email harus menganudng @ ex: abcd@gmial.com");
+                            
                             frmvalidator.addValidation("namaAppl", "req", "masukkan nama lengkap");
                             frmvalidator.addValidation("namaAppl", "maxlen=40", "maksimal nama 40 karakter");
-                            frmvalidator.addValidation("namaAppl", "alpha", "nama hanya mengandung huruf");
+                            frmvalidator.addValidation("namaAppl", "alpha_s", "nama hanya mengandung huruf");
 
                             frmvalidator.addValidation("passwordUser", "req", "masukkan password");
-                            frmvalidator.addValidation("passwordUser", "maxlen=15", "password maksimal 15 karakter");
+                            frmvalidator.addValidation("passwordUser", "maxlen=15", "password maksimal 20 karakter");
                             frmvalidator.addValidation("passwordUser", "minlen=8", "password minimal 8 karakter");
 
-                            frmvalidator.addValidation("nama", "req", "masukkan nama");
-                            frmvalidator.addValidation("nama", "maxlen=20", "maksimal nama 20 karakter");
-                            frmvalidator.addValidation("nama", "alpha", "nama harus mengandung huruf dan tidak menggunakan spasi");
+                            frmvalidator.addValidation("TTLAppl", "req", "masukkan tempat tanggal lahir");
+                            frmvalidator.addValidation("TTLAppl", "maxlen=50", "maksimal tempat tanggal lahir 50 karakter");
+                            
 
-                            frmvalidator.addValidation("alam", "maxlen=50");
-                            frmvalidator.addValidation("alam", "req", "masukkan alamat");
+                            frmvalidator.addValidation("jenisKelamin", "req","masukan pilihan jenis kelamin");
+                           
+                            frmvalidator.addValidation("alamatTinggal", "req", "masukan alamat tinggal");
+                            frmvalidator.addValidation("alamatTinggal", "maxlen=65", "maksimal alamat Tinggal 65 karakter");
+                           
+                            frmvalidator.addValidation("alamatKTP", "req", "masukan alamat KTP");
+                            frmvalidator.addValidation("alamatKTP", "maxlen=65", "maksimal alamat KTP 65 karakter");
+                           
+                            frmvalidator.addValidation("golDar", "req","masukan pilihan jenis kelamin");
+                           
+                           frmvalidator.addValidation("agama", "req", "masukan agama");
+                            frmvalidator.addValidation("agama", "alpha_s", "agama hanya mengandung huruf");
+                            
+                            frmvalidator.addValidation("noKTP", "req", "masukan nomor KTP");                           
+                            frmvalidator.addValidation("noKTP", "maxlen=16", "maksimal no ktp 16 karakter");
+                            frmvalidator.addValidation("noKTP", "minlen=16", "minimal no ktp 16 karakter");
+                            frmvalidator.addValidation("noKTP", "numeric", "Nomor KTP tidak boleh mengandung huruf");
 
-                            frmvalidator.addValidation("ktp", "numeric");
-                            frmvalidator.addValidation("ktp", "req", "masukkan no ktp");
-                            frmvalidator.addValidation("ktp", "maxlen=16", "maksimal no ktp 16 karakter");
-                            frmvalidator.addValidation("ktp", "minlen=16", "minimal no ktp 16 karakter");
-                            frmvalidator.addValidation("ktp", "numeric", "username tidak boleh mengandung huruf");
-
-                            frmvalidator.addValidation("hp", "numeric");
-                            frmvalidator.addValidation("hp", "req", "masukkan no telp");
-                            frmvalidator.addValidation("hp", "minlen=6", "minimal no telepon yang dimasukan 6 angka");
-                            frmvalidator.addValidation("hp", "numeric", "no telepon tidak boleh mengandung huruf");
+                            
+                            frmvalidator.addValidation("noTelp", "req", "masukkan nomor telepon");
+                            frmvalidator.addValidation("noTelp", "maxlen=13", "maksimal no telepon yang dimasukan 13 angka");
+                            frmvalidator.addValidation("noTelp", "numeric", "no telepon tidak boleh mengandung huruf");
 
 //]]></script>
 
