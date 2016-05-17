@@ -4,8 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@page import="java.sql.*" %>
- <%@page import="java.io.*" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -61,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a class="active" href="areas.html" data-hover="tctk">+tambah calon tenaga kerja</a></li>
 						<li><a href="blog.html" data-hover="til">+tambah info Loker</a></li>
 						<li><a href="contact.html" data-hover="hdtk">hapus daftar tenaga kerja</a></li>
-                                                <li><a href="contact.html" data-hover="hl">hapus Loker</a></li>
+                                                <li><a href="hapusInfoLoker.jsp" data-hover="hl">hapus Loker</a></li>
                                                 <li><a href="contact.html" data-hover="L">Logout</a></li>
 					</ul>
 				</div>
@@ -84,93 +82,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 			</div>
-                 </div>
-            <center><h1>Hapus Lowongan Pekerjaan dari Tabel Lowongan Pekerjaan berikut : </h1></center>
- <%
- try {
- 
-//deklarasi url database
- String url = "jdbc:mysql://localhost:3306/sptk";
- Connection con = null;
- Statement stat = null;
- ResultSet rs = null;
- 
-//load jdbc driver
- Class.forName("com.mysql.jdbc.Driver").newInstance();
- 
-con = DriverManager.getConnection(url, "root", "");
- 
-stat = con.createStatement();
- 
-//membuat query
- String query = "Select * from tabelloker";
- 
-rs = stat.executeQuery(query);
- 
-%>
- <table border="1">
- <tr>
- <th>Job</th>
- <th>Owner</th>
- <th>NO.KTP</th>
- <th>NPWP</th>
- <th>NO.Telpn</th>
- <th>Perusahaan</th>
- <th>Penempatan</th>
- <th>Syarat</th>
- <th>Fasilitas</th>
- <th>Keterangan</th>
- <th>Kode Iklan</th>
- </tr>
- <% while (rs.next())
- {
- %>
- <tr>
- <td><%=rs.getString(1)%></td>
- <td><%=rs.getString(2)%></td>
- <td><%=rs.getString(3)%></td>
- <td><%=rs.getString(4)%></td>
- <td><%=rs.getString(5)%></td>
- <td><%=rs.getString(6)%></td>
- <td><%=rs.getString(7)%></td>
- <td><%=rs.getString(8)%></td>
- <td><%=rs.getString(9)%></td>
- <td><%=rs.getString(10)%></td>
- <td><%=rs.getString(11)%></td>
- 
- </tr>
- 
-<%
- }
- %>
- <%
- 
-//menutup koneksi
- rs.close();
- stat.close();
- con.close();
- }
- catch (Exception ex)
- {
- out.println ("Unable to connect to database");
- }
- %>
- </table>
- <table>
- <tr>
- <td>
- <!--<form action="displayData.jsp" method="get" >
- <button type="submit">Back</button>
- </form>-->
- </td>
- </tr>
- </table>
- <br><p><center>Hapus Info lowongan kerja berdasarkan Kode Iklan !!!</center></p>
-        <form method="post" action="">
-            <center><p>Kode Iklan </p></center>
-            <center><input type="text" name="kodeIklan"/><br></center>
-            <center><input type="submit" name="submit" value="Hapus"/></center>
-</form>
+			</div>
+            
+            <p><center>SELAMAT DATANG !!!</center></p>
+        <center><img src="images/ed.jpeg" /></center>
+        <p><center>ADMINISTRATOR</center></p>
+            
 		<div class="copy">
 		    <p>&#169; Copyright 2016 | PTI | SPTK Project</p>
 		</div>

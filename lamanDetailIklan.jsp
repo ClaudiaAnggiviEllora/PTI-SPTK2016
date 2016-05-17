@@ -1,11 +1,13 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@page import="java.sql.*" %>
- <%@page import="java.io.*" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -84,8 +86,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 			</div>
-                 </div>
-            <center><h1>Hapus Lowongan Pekerjaan dari Tabel Lowongan Pekerjaan berikut : </h1></center>
+			</div>
+           <center><h1>Detail Lowongan Pekerjaan</h1></center>
  <%
  try {
  
@@ -156,21 +158,6 @@ rs = stat.executeQuery(query);
  }
  %>
  </table>
- <table>
- <tr>
- <td>
- <!--<form action="displayData.jsp" method="get" >
- <button type="submit">Back</button>
- </form>-->
- </td>
- </tr>
- </table>
- <br><p><center>Hapus Info lowongan kerja berdasarkan Kode Iklan !!!</center></p>
-        <form method="post" action="">
-            <center><p>Kode Iklan </p></center>
-            <center><input type="text" name="kodeIklan"/><br></center>
-            <center><input type="submit" name="submit" value="Hapus"/></center>
-</form>
 		<div class="copy">
 		    <p>&#169; Copyright 2016 | PTI | SPTK Project</p>
 		</div>
