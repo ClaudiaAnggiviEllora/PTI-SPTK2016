@@ -1,3 +1,11 @@
+<%-- 
+    Document   : logoutprocess
+    Created on : May 7, 2016, 1:57:15 PM
+    Author     : user
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -23,12 +31,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script type="text/javascript" src="js/move-top.js"></script>
         <script type="text/javascript" src="js/easing.js"></script>
         <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $(".scroll").click(function(event) {
-                    event.preventDefault();
-                    $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
-                });
-            });
+jQuery(document).ready(function($) {
+    $(".scroll").click(function(event) {
+        event.preventDefault();
+        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
+    });
+});
         </script>
 
     </head>
@@ -43,13 +51,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li><a  href="Home.jsp" data-hover="HOME">HOME</a></li> 
                             <li><a  data-hover="REGISTER">REGISTER
                                     <ul>
-                                        <a href="FormSignUpApp.jsp" value="applicant"> Applicant (Tenaga Kerja)</a>
+                                        <a  href="FormSignUpApp.jsp" value="applicant"> Applicant (Tenaga Kerja)</a>
                                     </ul>
                                     <ul>
-                                        <a  href="FormSignUpCust" value="customer">Customer (Pengguna Jasa)</a>
+                                        <a  href="FormSignUoCust" value="customer">Customer (Pengguna Jasa)</a>
                                     </ul>
                                 </a></li>
-                            <li><a  href="" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
+                            <li><a  href="LamanSearchLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
                             <li><a  href="About.jsp" data-hover="About">Tentang Perusahaan</a></li>
                             <li><a class="active" href="FormLoginUser.jsp" data-hover="LOGIN">LOGIN</a></li>
                         </ul>
@@ -74,6 +82,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <p> Jl. Kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                     </div>
                     <div class="header-top-right">
+
+                        <form>
+                            <input type="text" placeholder="Search" required="">
+                            <input type="submit" value="">
+                            <div class="clearfix"> </div>
+                        </form>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -82,6 +96,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="banner two">
         </div>
         <!--/contact-->
+        <%
+            session.removeAttribute("username");
+            session.invalidate();
+
+        %>
+
+        <h1 class="second-head" align="center"> Anda Berhasil Keluar </h1>
+        <h1 class="second-head" align="center">Silakan Login kembali untuk masuk ke Profile Anda</h1>
+
         <div class="section-contact">
             <div class="container">
                 <h2 class="second-head">Login</h2>
@@ -90,11 +113,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="col-md-6 contact-grid">
                         <form action="ServletLogin" name="myform" id="myform" method="get">
                             <p class="your-para">UserName :</p>
-                            <input type="text" name="username" value=""
-                                   >
+                            <input type="text" name="username" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '';
+                                    }">
                             <p class="your-para">Password :</p>
-                            <input type="password" name="passwordUser"
-                                   >
+                            <input type="password" name="passwordUser" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '';
+                                    }">
                             <div class="send">
                                 <input type="submit" value="Login" >
                             </div>
@@ -141,6 +166,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <p>&copy; 2016 Edi Daya Group. All Rights Reserved </p>
         </div>
         <!--//footer-->
+
         <!--start-smoth-scrolling-->
         <script type="text/javascript">
             $(document).ready(function() {

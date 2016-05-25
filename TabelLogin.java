@@ -3,35 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelAndControl;
+
+package PTI;
 
 /**
  *
- * @author laura
+ * @author user
  */
-public class TabelLogin {
-    public String userName;
-    public String passwordUser;
-public String role;
-    
-    TabelLogin(){
-        
+class TabelLogin {
+    private String username, passwordUser, role;
+
+    public TabelLogin() {
+    }
+   
+    public String getUsername() {
+        return username;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-    
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPasswordUser() {
@@ -44,3 +34,4 @@ public String role;
     
     
 }
+ 

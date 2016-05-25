@@ -1,3 +1,9 @@
+<%@page import="java.io.*"%>
+<%@page import="PTI.Koneksi"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.*"%>
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -30,9 +36,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 });
             });
         </script>
+        <!-- Add fancyBox main JS and CSS files -->
+        <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+        <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+        <script>
+            $(document).ready(function() {
+                $('.popup-with-zoom-anim').magnificPopup({
+                    type: 'inline',
+                    fixedContentPos: false,
+                    fixedBgPos: true,
+                    overflowY: 'auto',
+                    closeBtnInside: true,
+                    preloader: false,
+                    midClick: true,
+                    removalDelay: 300,
+                    mainClass: 'my-mfp-zoom-in'
+                });
+            });
+        </script>
 
     </head>
     <body>
+
         <!--start-home-->
         <div id="home" class="header">
             <div class="header-top">
@@ -40,21 +65,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="menu"></span>
                     <div class="top-menu">
                         <ul class="cl-effect-16">
-                            <li><a  href="Home.jsp" data-hover="HOME">HOME</a></li> 
-                            <li><a  data-hover="REGISTER">REGISTER
-                                    <ul>
-                                        <a href="FormSignUpApp.jsp" value="applicant"> Applicant (Tenaga Kerja)</a>
-                                    </ul>
-                                    <ul>
-                                        <a  href="FormSignUpCust" value="customer">Customer (Pengguna Jasa)</a>
-                                    </ul>
-                                </a></li>
-                            <li><a  href="" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
-                            <li><a  href="About.jsp" data-hover="About">Tentang Perusahaan</a></li>
-                            <li><a class="active" href="FormLoginUser.jsp" data-hover="LOGIN">LOGIN</a></li>
+                            <li><a  href="HomeCust.jsp" data-hover="Home">Home</a></li> 
+                            <li><a href="LamanProfileCust.jsp" data-hover="Edit Data">Profile Customer</a></li>
+                            <li><a  href="EditDataCust.jsp" data-hover="Edit Data">Edit Data</a></li>
+                            <li><a  href="FormAddInfoLoker.jsp" data-hover="pasang Iklan">Pasang Iklan</a></li>
+                            <li><a class="active" href="AboutCust.jsp" data-hover="Tentang Customers">Tentang Customers</a></li>
+                            <li><a  href="logoutprocess.jsp" data-hover="Logout">Logout</a></li>
                         </ul>
                     </div>
                     <!-- script-for-menu -->
+
                     <script>
                         $("span.menu").click(function() {
                             $(".top-menu").slideToggle("slow", function() {
@@ -74,6 +94,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <p> Jl. Kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                     </div>
                     <div class="header-top-right">
+                       
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -81,30 +102,51 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="banner two">
         </div>
-        <!--/contact-->
-        <div class="section-contact">
-            <div class="container">
-                <h2 class="second-head">Login</h2>
-                <div class="contact-main">
 
-                    <div class="col-md-6 contact-grid">
-                        <form action="ServletLogin" name="myform" id="myform" method="get">
-                            <p class="your-para">UserName :</p>
-                            <input type="text" name="username" value=""
-                                   >
-                            <p class="your-para">Password :</p>
-                            <input type="password" name="passwordUser"
-                                   >
-                            <div class="send">
-                                <input type="submit" value="Login" >
-                            </div>
-                        </form>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
+
+
+        <%
+            Statement statement;
+            Koneksi dbConn = null;
+            Connection sqlConn = null;
+            ResultSet resultSet = null;
+
+            dbConn = new Koneksi();
+            sqlConn = dbConn.getConnection();
+
+            statement = sqlConn.createStatement();
+            String query;
+            String username = (String) session.getAttribute("uName");
+
+            String about = "";
+
+            query = "SELECT * FROM tabelcustomers WHERE username = '" + username + "'";
+            resultSet = statement.executeQuery(query);
+        %>
+        <%
+         while (resultSet.next()) {%>
+
+
+
+        <!--about-->
+        <div class="about">
+            <div class="container">
+
+
+                <div class="ab-bottom">
+                    <h2 class="second-head">Perusahaan, <%=resultSet.getString("namaCust")%></h2>
+
+                    <p><%=resultSet.getString("about")%></div>
+
             </div>
+            <div class="clearfix"></div>
         </div>
 
+        <%}
+        %>
+
+
+        <!--//about-->
 
         <!--/footer/info kontak dan alamat-->
         <div class="footer">
@@ -141,6 +183,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <p>&copy; 2016 Edi Daya Group. All Rights Reserved </p>
         </div>
         <!--//footer-->
+
         <!--start-smoth-scrolling-->
         <script type="text/javascript">
             $(document).ready(function() {
