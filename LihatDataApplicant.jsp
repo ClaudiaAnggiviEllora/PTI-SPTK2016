@@ -1,9 +1,11 @@
 <%-- 
-    Document   : addLokersukses
-    Created on : May 4, 2016, 1:01:06 AM
+    Document   : LihatDataApplicant
+    Created on : May 25, 2016, 4:53:42 AM
     Author     : laura
 --%>
 
+
+<!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -16,28 +18,7 @@
 <% Koneksi conn = new Koneksi();%>
 <!DOCTYPE html>
 
-<%-- 
-    Document   : FormAddInfoLoker
-    Created on : May 3, 2016, 8:46:42 PM
-    Author     : laura
---%>
 
-
-<%
-    Statement statement;
-    Koneksi dbConn = null;
-    Connection sqlConn = null;
-    ResultSet resultSet = null;
-
-    dbConn = new Koneksi();
-    sqlConn = dbConn.getConnection();
-
-    statement = sqlConn.createStatement();
-    String query;
-    String kode = (String) session.getAttribute("kodeIklan");
-    query = "select kodeIklan from tabelloker where kodeIklan='" + kode + "'";
-    resultSet = statement.executeQuery(query);
-%>
 <html>
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
@@ -121,11 +102,125 @@
                         <p> Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                       
         <br>
-        
-        <h3><font color="blue">Lowongan kerja berhasil ditambahkan
-            dengan kode <%=resultSet.next() ? resultSet.getString(1) : null%></font></h3>
-            <h4><a href="LihatDataInfoLoker.jsp">Lihat Informasi Loker</a></h4>  
-                    </div>
+        <h3>Data Diri</h3>
+         <table border ="1">
+                                <p align="center">
+                                <tr bgcolor="#003366">
+                                
+                                    <th style="color: white ">
+                                        username
+                                    </th>
+                                    <th style="color: white">
+                                        password user
+                                    </th>
+                                    <th style="color: white">
+                                        nama
+                                    </th>
+                                    <th style="color: white">
+                                        Tempat Tanggal Lahir
+                                    </th>
+                                    <th style="color: white">
+                                        jenis kelamin
+                                    </th>
+                                    <th style="color: white">
+                                        alamat tinggal
+                                    </th>
+                                    <th style="color: white">
+                                        alamat KTP
+                                    </th>
+                                    <th style="color: white">
+                                        Telepon
+                                    </th>
+                                    <th style="color: white">
+                                        Email
+                                    </th>
+                                    <th style="color: white">
+                                        Agama
+                                    </th>
+                                    <th style="color: white">
+                                       Nomor KTP
+                                    </th>
+                                    <th style="color: white">
+                                        goldar
+                                    </th>
+                                    <th style="color: white">
+                                        Penyakit
+                                    </th>
+                                    <th style="color: white">
+                                        Jenis pekerjaan yang diinginkan
+                                    </th>
+                                    </tr>
+                                     <%               
+                                    Statement statement;
+            Koneksi dbConn = null;
+            Connection sqlConn = null;
+            ResultSet resultSet = null;
+
+            dbConn = new Koneksi();
+            sqlConn = dbConn.getConnection();
+
+            statement = sqlConn.createStatement();
+            String query;
+            
+
+            query = "select username,passworduser,namaappl,TTLAppl,jeniskelamin,alamattinggal,alamatktp,telepon, email, agama, "
+                    + "noktp, goldar, penyakit, jenispekerjaan from tabelapplicant";
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                                %>
+                                   <tr>
+                                    <td>
+                                        <%=resultSet.getString("userName")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("passwordUser")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("namaAppl")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("TTLAppl")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("jenisKelamin")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("alamatTinggal")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("alamatKTP")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("telepon")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("email")%>
+                                    </td>
+                                     <td>
+                                        <%=resultSet.getString("agama")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("noKTP")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("golDar")%>
+                                    </td>
+                                     <td>
+                                        <%=resultSet.getString("penyakit")%>
+                                    </td>
+                                     <td>
+                                        <%=resultSet.getString("jenisPekerjaan")%>
+                                    </td> 
+                                     <%
+                                        }
+                                    %>
+                                </tr>
+                               
+                                </p>
+             </table>
+                                
+                                
+                                 </div>
                     
                 </div>
             </div>
@@ -189,18 +284,3 @@
 
     </body>
 </html
-
-<!--<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-
-        <small>Lowongan kerja berhasil ditambahkan
-            dengan kode 
-        </small>
-
-
-    </body>
-</html>-->

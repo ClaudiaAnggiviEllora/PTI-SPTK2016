@@ -23,21 +23,7 @@
 --%>
 
 
-<%
-    Statement statement;
-    Koneksi dbConn = null;
-    Connection sqlConn = null;
-    ResultSet resultSet = null;
 
-    dbConn = new Koneksi();
-    sqlConn = dbConn.getConnection();
-
-    statement = sqlConn.createStatement();
-    String query;
-    String kode = (String) session.getAttribute("kodeIklan");
-    query = "select kodeIklan from tabelloker where kodeIklan='" + kode + "'";
-    resultSet = statement.executeQuery(query);
-%>
 <html>
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
@@ -122,9 +108,107 @@
                       
         <br>
         
-        <h3><font color="blue">Lowongan kerja berhasil ditambahkan
-            dengan kode <%=resultSet.next() ? resultSet.getString(1) : null%></font></h3>
-            <h4><a href="LihatDataInfoLoker.jsp">Lihat Informasi Loker</a></h4>  
+         <center><table border ="1">
+                                <p align="center">
+                                <tr bgcolor="#003366">
+                                    <th style="color: white ">
+                                        Tanggal Update
+                                    </th>
+                                    <th style="color: white">
+                                        Jenis Pekerjaan
+                                    </th>
+                                    <th style="color: white">
+                                        Job
+                                    </th>
+                                    <th style="color: white">
+                                        Owner
+                                    </th>
+                                    <th style="color: white">
+                                        nomor KTP
+                                    </th>
+                                    <th style="color: white">
+                                        NPWP
+                                    </th>
+                                    <th style="color: white">
+                                        Nomor Telepon
+                                    </th>
+                                    <th style="color: white">
+                                        Nama Perusahaan
+                                    </th>
+                                    <th style="color: white">
+                                        Daerah Penempatan 
+                                    </th>
+                                    <th style="color: white">
+                                        Syarat
+                                    </th>
+                                    <th style="color: white">
+                                        Fasilitas
+                                    </th>
+                                    <th style="color: white">
+                                        Kode Iklan
+                                    </th>
+                                </tr>
+                                <%               
+                                    Statement statement;
+            Koneksi dbConn = null;
+            Connection sqlConn = null;
+            ResultSet resultSet = null;
+
+            dbConn = new Koneksi();
+            sqlConn = dbConn.getConnection();
+
+            statement = sqlConn.createStatement();
+            String query;
+            
+
+            query = "select * from tabelloker where keterangan='sudah di post' ";
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                                %>
+
+                                <tr >
+                                    <td>
+                                        <%=resultSet.getString("tanggal")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("jenisPekerjaan")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("job")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("owner")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("noKTP")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("NPWP")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("noTelp")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("perusahaan")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("penempatan")%>
+                                    </td>
+                                     <td>
+                                        <%=resultSet.getString("syarat")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("fasilitas")%>
+                                    </td>
+                                    <td>
+                                        <%=resultSet.getString("kodeIklan")%>
+                                    </td>
+                                    <%
+                                        }
+                                    %>
+                                </tr>
+                                </p>
+                            </table> </center> 
                     </div>
                     
                 </div>
@@ -190,17 +274,4 @@
     </body>
 </html
 
-<!--<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
 
-        <small>Lowongan kerja berhasil ditambahkan
-            dengan kode 
-        </small>
-
-
-    </body>
-</html>-->
