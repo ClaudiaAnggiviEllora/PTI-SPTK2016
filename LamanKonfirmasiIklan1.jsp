@@ -105,85 +105,80 @@
                 <h2 class="second-head">Konfirmasi Iklan Lowongan Kerja</h2>
                 <div class="contact-main">
                     <div class="col-md-6 contact-grid">
-                        <form action="servletKonfirmasiIklan" name="myform" id="myform" >
+                        <form action="servletKonfirmasiIklan1" name="myform" id="myform" >
+                            <%
+                                try {
 
-                            <table style='width:30%' border="0" align="center">
+                                    //deklarasi url database
+                                    String url = "jdbc:mysql://localhost:3306/sptk";
+                                    Connection con = null;
+                                    Statement stat = null;
+                                    ResultSet rs = null;
 
+                                    //load jdbc driver
+                                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+                                    con = DriverManager.getConnection(url, "root", "");
+
+                                    stat = con.createStatement();
+
+                                    //membuat query
+                                    String query = "Select * from tabelkonfirmasi";
+
+                                    rs = stat.executeQuery(query);
+
+                            %>
+                            <table border="1">
+                                <tr>
+                                    <th>Job</th>
+                                    <th>Owner</th>
+                                    <th>NO.KTP</th>
+                                    <th>NPWP</th>
+                                    <th>NO.Telpn</th>
+                                    <th>Perusahaan</th>
+                                    <th>Penempatan</th>
+                                    <th>Syarat</th>
+                                    <th>Fasilitas</th>
+                                    <th>Keterangan</th>
+                                    <th>Kode Iklan</th>
                                 </tr>
-                                <%
-                                    try {
-
-                                        //deklarasi url database
-                                        String url = "jdbc:mysql://localhost:3306/sptk";
-                                        Connection con = null;
-                                        Statement stat = null;
-                                        ResultSet rs = null;
-
-                                        //load jdbc driver
-                                        Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-                                        con = DriverManager.getConnection(url, "root", "");
-
-                                        stat = con.createStatement();
-
-                                        //membuat query
-                                        String query = "Select * from tabelloker";
-
-                                        rs = stat.executeQuery(query);
-
+                                <% while (rs.next()) {
                                 %>
-                                <table border="1">
-                                    <tr>
-                                        <th>Job</th>
-                                        <th>Owner</th>
-                                        <th>NO.KTP</th>
-                                        <th>NPWP</th>
-                                        <th>NO.Telpn</th>
-                                        <th>Perusahaan</th>
-                                        <th>Penempatan</th>
-                                        <th>Syarat</th>
-                                        <th>Fasilitas</th>
-                                        <th>Keterangan</th>
-                                        <th>Kode Iklan</th>
-                                    </tr>
-                                    <% while (rs.next()) {
-                                    %>
-                                    <tr>
-                                        <td><%=rs.getString(1)%></td>
-                                        <td><%=rs.getString(2)%></td>
-                                        <td><%=rs.getString(3)%></td>
-                                        <td><%=rs.getString(4)%></td>
-                                        <td><%=rs.getString(5)%></td>
-                                        <td><%=rs.getString(6)%></td>
-                                        <td><%=rs.getString(7)%></td>
-                                        <td><%=rs.getString(8)%></td>
-                                        <td><%=rs.getString(9)%></td>
-                                        <td><%=rs.getString(10)%></td>
-                                        <td><%=rs.getString(11)%></td>
+                                <tr>
+                                    <td><%=rs.getString(1)%></td>
+                                    <td><%=rs.getString(2)%></td>
+                                    <td><%=rs.getString(3)%></td>
+                                    <td><%=rs.getString(4)%></td>
+                                    <td><%=rs.getString(5)%></td>
+                                    <td><%=rs.getString(6)%></td>
+                                    <td><%=rs.getString(7)%></td>
+                                    <td><%=rs.getString(8)%></td>
+                                    <td><%=rs.getString(9)%></td>
+                                    <td><%=rs.getString(10)%></td>
+                                    <td><%=rs.getString(11)%></td>
+                                </tr>
 
-                                    </tr>
-
-                                    <%
-                                        }
-                                    %>
-                                    <%
-                                            //menutup koneksi
-                                            rs.close();
-                                            stat.close();
-                                            con.close();
-                                        } catch (Exception ex) {
-                                            out.println("Unable to connect to database");
-                                        }
-                                    %>
-                                </table>
-
-                                <tr><center>Masukkan Kode Iklan</center>
-                                <tr><input type="text" name="kodeIklan" value="" size="200">
-                                <tr> <td><input type="submit" value="KONFIRMASI" name="KONFIRMASI"></td></tr>
+                                <%
+                                    }
+                                %>
+                                <%
+                                        //menutup koneksi
+                                        rs.close();
+                                        stat.close();
+                                        con.close();
+                                    } catch (Exception ex) {
+                                        out.println("Unable to connect to database");
+                                    }
+                                %>
                             </table>
-                        </form>
-
-
-                        </form>
-                        </body>
-                        </html>
+                            <br><p><center>Konfirmasi lowongan kerja berdasarkan Kode Iklan !!!</center></p>
+                            <form method="post" action="">
+                                <center><p>Kode Iklan </p></center>
+                                <center><input type="text" name="kodeIklan"/><br></center>
+                                <center><input type="submit" name="submit" value="Konfirmasi"/></center>
+                            </form>
+                            <div class="copy">
+                                <p>&#169; Copyright 2016 | PTI | SPTK Project</p>
+                            </div>
+                            </body>
+                            </html>
