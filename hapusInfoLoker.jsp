@@ -55,14 +55,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"></span>
 				<div class="top-menu">
 				<ul class="cl-effect-16">
-						<li><a href="index.html" data-hover="HOME">Home</a></li> 
-						<li><a href="about.html" data-hover="PIK">Pasang Iklan Loker</a></li>
-						<li><a href="typography.html" data-hover="ppi">permintaan pasang iklan Loker</a></li>
-						<li><a class="active" href="areas.html" data-hover="tctk">+tambah calon tenaga kerja</a></li>
-						<li><a href="blog.html" data-hover="til">+tambah info Loker</a></li>
-						<li><a href="contact.html" data-hover="hdtk">hapus daftar tenaga kerja</a></li>
-                                                <li><a href="contact.html" data-hover="hl">hapus Loker</a></li>
-                                                <li><a href="contact.html" data-hover="L">Logout</a></li>
+						<li><a href="input.jsp" data-hover="HOME">Home</a></li> 
+						<li><a href="input.jsp" data-hover="Pasang Iklan Loker">Pasang Iklan Loker</a></li>
+						<li><a href="input.jsp" data-hover="permintaan pasang iklan Loker">permintaan pasang iklan Loker</a></li>
+						<li><a class="active" href="areas.jsp" data-hover="+tambah calon tenaga kerja">+tambah calon tenaga kerja</a></li>
+						<li><a href="input.jsp" data-hover="+tambah info Loker">+tambah info Loker</a></li>
+						<li><a href="hapusInfoLoker.jsp" data-hover="hapus daftar tenaga kerja">hapus daftar tenaga kerja</a></li>
+                                                <li><a href="input.jsp" data-hover="hapus Loker">hapus Loker</a></li>
+                                                <li><a href="input.jsp" data-hover="Logout">Logout</a></li>
 					</ul>
 				</div>
             <!-- script-for-menu -->
@@ -103,13 +103,16 @@ con = DriverManager.getConnection(url, "root", "");
 stat = con.createStatement();
  
 //membuat query
- String query = "Select * from tabelloker";
+String query = "Select * from tabelloker";
+
  
 rs = stat.executeQuery(query);
  
 %>
  <table border="1">
  <tr>
+ <th>Tanggal</th>
+ <th>Jenis Pekerjaan</th>
  <th>Job</th>
  <th>Owner</th>
  <th>NO.KTP</th>
@@ -125,6 +128,7 @@ rs = stat.executeQuery(query);
  <% while (rs.next())
  {
  %>
+
  <tr>
  <td><%=rs.getString(1)%></td>
  <td><%=rs.getString(2)%></td>
@@ -137,7 +141,11 @@ rs = stat.executeQuery(query);
  <td><%=rs.getString(9)%></td>
  <td><%=rs.getString(10)%></td>
  <td><%=rs.getString(11)%></td>
- 
+ <td><%=rs.getString(12)%></td>
+ <td><%=rs.getString(13)%></td>
+ <!--<form action="servletHapusLoker" method="post"></form>
+       <td><input type="submit" value="hapus"/></td>
+ <!--<button type="submit">hapus </button>-->
  </tr>
  
 <%
@@ -156,17 +164,13 @@ rs = stat.executeQuery(query);
  }
  %>
  </table>
+
  <table>
  <tr>
- <td>
- <!--<form action="displayData.jsp" method="get" >
- <button type="submit">Back</button>
- </form>-->
- </td>
  </tr>
  </table>
  <br><p><center>Hapus Info lowongan kerja berdasarkan Kode Iklan !!!</center></p>
-        <form method="post" action="">
+        <form method="post" action="./servletHapusLoker">
             <center><p>Kode Iklan </p></center>
             <center><input type="text" name="kodeIklan"/><br></center>
             <center><input type="submit" name="submit" value="Hapus"/></center>

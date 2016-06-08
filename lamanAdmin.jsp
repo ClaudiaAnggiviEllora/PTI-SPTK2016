@@ -53,14 +53,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"></span>
 				<div class="top-menu">
 				<ul class="cl-effect-16">
-						<li><a href="index.html" data-hover="HOME">Home</a></li> 
-						<li><a href="about.html" data-hover="PIK">Pasang Iklan Loker</a></li>
-						<li><a href="typography.html" data-hover="ppi">permintaan pasang iklan Loker</a></li>
-						<li><a class="active" href="areas.html" data-hover="tctk">+tambah calon tenaga kerja</a></li>
-						<li><a href="blog.html" data-hover="til">+tambah info Loker</a></li>
-						<li><a href="contact.html" data-hover="hdtk">hapus daftar tenaga kerja</a></li>
-                                                <li><a href="hapusInfoLoker.jsp" data-hover="hl">hapus Loker</a></li>
-                                                <li><a href="contact.html" data-hover="L">Logout</a></li>
+						<li><a href="input.jsp" data-hover="HOME">Home</a></li> 
+						<li><a href="input.jsp" data-hover="Pasang Iklan Loker">Pasang Iklan Loker</a></li>
+						<li><a href="input.jsp" data-hover="permintaan pasang iklan Loker">permintaan pasang iklan Loker</a></li>
+						<li><a class="active" href="areas.jsp" data-hover="+tambah calon tenaga kerja">+tambah calon tenaga kerja</a></li>
+						<li><a href="input.jsp" data-hover="+tambah info Loker">+tambah info Loker</a></li>
+						<li><a href="" data-hover="input.jsp">hapus daftar tenaga kerja</a></li>
+                                                <li><a href="hapusInfoLoker.jsp" data-hover="hapus Loker">hapus Loker</a></li>
+                                                <li><a href="input.jsp" data-hover="Logout">Logout</a></li>
 					</ul>
 				</div>
             <!-- script-for-menu -->

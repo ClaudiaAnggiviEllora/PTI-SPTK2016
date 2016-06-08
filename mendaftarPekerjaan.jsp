@@ -1,13 +1,11 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@page import="java.sql.*" %>
+ <%@page import="java.io.*" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -57,14 +55,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"></span>
 				<div class="top-menu">
 				<ul class="cl-effect-16">
-						<li><a href="index.html" data-hover="Home">Home</a></li> 
-						<li><a href="about.html" data-hover="Pasang Iklan Loker">Pasang Iklan Loker</a></li>
-						<li><a href="typography.html" data-hover="permintaan pasang iklan Loker">permintaan pasang iklan Loker</a></li>
-						<li><a class="active" href="areas.html" data-hover="+tambah calon tenaga kerja">+tambah calon tenaga kerja</a></li>
-						<li><a href="blog.html" data-hover="+tambah info Loker">+tambah info Loker</a></li>
-						<li><a href="contact.html" data-hover="hapus daftar tenaga kerja">hapus daftar tenaga kerja</a></li>
-                                                <li><a href="contact.html" data-hover="hapus Loker">hapus Loker</a></li>
-                                                <li><a href="contact.html" data-hover="Logout">Logout</a></li>
+						<li><a class="active" href="Home.jsp" data-hover="HOME">HOME</a></li> 
+                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
+                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
+                            <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
 					</ul>
 				</div>
             <!-- script-for-menu -->
@@ -86,83 +80,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 			</div>
-			</div>
-           <center><h1>Detail Lowongan Pekerjaan</h1></center>
- <%
- try {
- 
-//deklarasi url database
- String url = "jdbc:mysql://localhost:3306/sptk";
- Connection con = null;
- Statement stat = null;
- ResultSet rs = null;
- 
-//load jdbc driver
- Class.forName("com.mysql.jdbc.Driver").newInstance();
- 
-con = DriverManager.getConnection(url, "root", "");
- 
-stat = con.createStatement();
- 
-//membuat query
- String query = "Select * from tabelloker";
- 
-rs = stat.executeQuery(query);
- 
-%>
- <table border="1">
- <tr>
- <th>Tanggal</th>
- <th>Jenis Pekerjaan</th>
- <th>Job</th>
- <th>Owner</th>
- <th>NO.KTP</th>
- <th>NPWP</th>
- <th>NO.Telpn</th>
- <th>Perusahaan</th>
- <th>Penempatan</th>
- <th>Syarat</th>
- <th>Fasilitas</th>
- <th>Keterangan</th>
- <th>Kode Iklan</th>
- <th>Daftar<th>
- </tr>
- <% while (rs.next())
- {
- %>
- <tr>
- <td><%=rs.getString(1)%></td>
- <td><%=rs.getString(2)%></td>
- <td><%=rs.getString(3)%></td>
- <td><%=rs.getString(4)%></td>
- <td><%=rs.getString(5)%></td>
- <td><%=rs.getString(6)%></td>
- <td><%=rs.getString(7)%></td>
- <td><%=rs.getString(8)%></td>
- <td><%=rs.getString(9)%></td>
- <td><%=rs.getString(10)%></td>
- <td><%=rs.getString(11)%></td>
- <td><%=rs.getString(12)%></td>
- <td><%=rs.getString(13)%></td>
- <td><a href="mendaftarPekerjaan.jsp"><input type="submit" value="Daftar"/></a></td>
+                 </div>
+            <center><h1>Masukkan username dan ( paste kode iklan )</h1></center>
 
- 
-<%
- }
- %>
- <%
- 
-//menutup koneksi
- rs.close();
- stat.close();
- con.close();
- }
- catch (Exception ex)
- {
- out.println ("Unable to connect to database");
- }
- %>
- </table>
+        <form method="post" action="./servletMendaftarPekerjaan">
+            <center><p>username<p></center>
+            <center><input type="text" name="username"/><br><center><br>
+            <center><p>Kode Iklan </p></center>
+            <center><input type="text" name="kodeIklan"/><br></center><br>
+            <center><input type="submit" name="submit" value="Daftar"/></center>
+</form>
 		<div class="copy">
 		    <p>&#169; Copyright 2016 | PTI | SPTK Project</p>
 		</div>

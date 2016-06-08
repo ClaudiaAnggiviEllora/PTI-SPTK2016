@@ -53,10 +53,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<span class="menu"></span>
 				<div class="top-menu">
 				<ul class="cl-effect-16">
-						<li><a href="index.html" data-hover="HOME">Home</a></li> 
-						<li><a href="about.html" data-hover="PIK">Pasang Iklan Loker</a></li>
-						<li><a href="typography.html" data-hover="ppi">Profil Data Diri</a></li>
-                                                <li><a href="contact.html" data-hover="L">Logout</a></li>
+						<li><a href="input.html" data-hover="Home">Home</a></li> 
+						<li><a href="input.html" data-hover="Pasang Iklan Loker">Pasang Iklan Loker</a></li>
+						<li><a href="input.html" data-hover="Profil Data Diri">Profil Data Diri</a></li>
+                                                <li><a href="input.html" data-hover="Logout">Logout</a></li>
 					</ul>
 				</div>
             <!-- script-for-menu -->
