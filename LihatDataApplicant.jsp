@@ -65,22 +65,30 @@
             <div class="header-top">
                 <div class="container">
                     <span class="menu"></span>
-                    <div class="top-menu">
+                   <div class="top-menu">
                         <ul class="cl-effect-16">
-                           <li><a  href="LamanAdmin.jsp" data-hover="HOME">HOME</a></li> 
-                            <li><a href="about.html" data-hover="ABOUT">ABOUT</a></li>
+                            <li><a   href="LamanAdmin.jsp" data-hover="Home">Home</a></li> 
+                            <li><a  data-hover="Tambah Data">Tambah Data
+                                    <ul><a href="FormAddApplicant.jsp" value="applicant"> Applicant (Tenaga Kerja)</a> </ul>
+                                    <ul><a href="FormAddInfoLoker.jsp" value=""> Lowongan Kerja</a> </ul>
+                                </a></li>
 
+                            <li><a  data-hover="Lihat Data">Lihat Data
+                                    <ul><a class="active" href="LihatDataApplicant.jsp" value="applicant"> Applicant (Tenaga Kerja)</a> </ul>
+                                    <ul><a href="LihatDataCustomer.jsp" value="customers"> Customers</a> </ul>
+                                    <ul><a href="DataPelamar.jsp" value="dataPelamar"> PELAMAR PEKERJAAN</a> </ul>
 
+                                </a></li>
+                            <li><a  data-hover="Lowongan Pekerjaan">Lowongan Pekerjaan
 
-                            <li><a href="FormAddInfoLoker.jsp"data-hover="TAMBAH INFORMASI LOKER">TAMBAH INFORMASI LOKER </a></li>
-<li><a href="FormAddApplicant.jsp"data-hover="TAMBAH INFORMASI LOKER">TAMBAH DATA APPLICANT (TENAGA KERJA) </a></li>
-                            <li><a href="LamanSearchLoker.jsp" data-hover="INFORMASI LOKER">INFORMASI LOKER</a></li>
-                            <li><a href="" data-hover="DATA PENDAFTAR LOKER">DATA PENDAFTAR LOKER </a></li>
-                             <li><a href="FormPasangIklan.jsp" data-hover="DATA PEMASANGAN IKLAN LOKER">DATA PEMASANGAN IKLAN LOKER</a></li>
- <li><a href="" data-hover="HAPUS LOKER">HAPUS LOKER </a></li>
-  <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT </a></li>
-                            
+                                    <ul><a  href=# data-hover="KONFIRMASI LOWONGAN KERJA">KONFIRMASI LOWONGAN KERJA </a></ul>
+                                    <ul><a  href="LihatDataLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></ul>
+                                    <ul><a href=# data-hover="Hapus Lowongan Pekerjaan">Hapus Lowongan Kerja</a></ul>
+                                </a></li>
+
+                            <li><a href="LogoutProccess.jsp" data-hover="Logout">Logout</a></li>
                         </ul>
+
                     </div>
                     <!-- script-untuk-menu -->
                     <script>
@@ -131,24 +139,22 @@
                                     <th style="color: white">
                                         Telepon
                                     </th>
-                                    <th style="color: white">
-                                        Email
-                                    </th>
+                                    
                                     <th style="color: white">
                                         Agama
                                     </th>
                                     <th style="color: white">
                                        Nomor KTP
                                     </th>
-                                    <th style="color: white">
-                                        goldar
-                                    </th>
-                                    <th style="color: white">
-                                        Penyakit
-                                    </th>
+                                    
+                                    
                                     <th style="color: white">
                                         Jenis pekerjaan yang diinginkan
                                     </th>
+                                    <th style="color: white">
+                                        Status Penempatan
+                                    </th>
+                                    
                                     </tr>
                                      <%               
                                     Statement statement;
@@ -163,8 +169,8 @@
             String query;
             
 
-            query = "select username,passworduser,namaappl,TTLAppl,jeniskelamin,alamattinggal,alamatktp,telepon, email, agama, "
-                    + "noktp, goldar, penyakit, jenispekerjaan from tabelapplicant";
+            query = "select username,passworduser,namaappl,TTLAppl,jeniskelamin,alamattinggal,alamatktp,telepon, agama, "
+                    + "noktp, jenispekerjaan, status from tabelapplicant";
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                                 %>
@@ -193,31 +199,40 @@
                                     <td>
                                         <%=resultSet.getString("telepon")%>
                                     </td>
-                                    <td>
-                                        <%=resultSet.getString("email")%>
-                                    </td>
+                                   
                                      <td>
                                         <%=resultSet.getString("agama")%>
                                     </td>
                                     <td>
                                         <%=resultSet.getString("noKTP")%>
                                     </td>
-                                    <td>
-                                        <%=resultSet.getString("golDar")%>
-                                    </td>
-                                     <td>
-                                        <%=resultSet.getString("penyakit")%>
-                                    </td>
+                                    
                                      <td>
                                         <%=resultSet.getString("jenisPekerjaan")%>
                                     </td> 
+                                    <td>
+                                        <%=resultSet.getString("status")%>
+                                    </td> 
+                                                                    
+                                   
                                      <%
                                         }
                                     %>
                                 </tr>
-                               
-                                </p>
+                              
              </table>
+                                <br>
+                                <br>
+                                
+                                <form action="ServletInputPenempatan1" method="get">
+                                <h3>Lihat Detail Data Applicant</h3>
+                                <p class="your-para">Inputkan Username Applicant : </p>
+                            <input type="text" name="userName"value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '';
+                                    }">
+                            <div class="send">
+                                    <input type="submit" value="Lihat Detail" >
+                                </div></form>
                                 
                                 
                                  </div>

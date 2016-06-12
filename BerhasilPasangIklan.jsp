@@ -32,13 +32,6 @@
                 });
             });
         </script>
-        <style type="text/css" >
-            BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
-            A{font-family: Arial,Verdana,Helvetica, sans-serif;}
-            B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
-            .error_strings{ font-family:Verdana; font-size:14px; color:#660000;}
-        </style><script language="JavaScript" src="gen_validatorv4.js"
-        type="text/javascript" ></script>
         <!--gallery-->
         <script src="js/jquery.chocolat.js"></script>
         <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="all" />
@@ -65,8 +58,8 @@
                         <ul class="cl-effect-16">
                             <li><a  href="LamanCustomer.jsp" data-hover="Home">Home</a></li> 
                             <li><a  href="LamanProfileCust.jsp" data-hover="Profile Customers">Profile Customer</a></li>
-                            <li><a  href="EditProfilCust.jsp" data-hover="Edit Data">Edit Data</a></li>
-                            <li><a  href="FormPasangIklan.jsp" data-hover="Pasang Iklan">Pasang Iklan</a></li>
+                            <li><a  href="EditProfileCust.jsp" data-hover="Edit Data">Edit Data</a></li>
+                            <li><a  href="FormPasangIklan.jsp" class="active" data-hover="Pasang Iklan">Pasang Iklan</a></li>                  
                             <li><a  href="LogoutProccess.jsp" data-hover="Logout">Logout</a></li>
                         </ul>
                     </div>
@@ -102,6 +95,7 @@
         <!--/form registrasi identitas-->
         <div class="section-contact">
             <div class="container">
+                <h1>Pasang Iklan Berhasil! Silahkan tunggu konfirmasi dari admin. Terima Kasih</h1>
                 <h2 class="second-head">Pasang Iklan</h2>
                 <div class="contact-main">
 

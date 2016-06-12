@@ -1,18 +1,13 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="modelAndControl.Koneksi"%>
+<%@page import="java.sql.Statement"%>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="modelAndControl.Koneksi"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page language="java" %>
-<%! Statement statement;%>
-<%! ResultSet result;%>
-<% Koneksi conn = new Koneksi();%>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -55,23 +50,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     </head>
     <body>
-        <!--start-home-->
+        
+       <!--start-home-->
         <div id="home" class="header">
             <div class="header-top">
                 <div class="container">
                     <span class="menu"></span>
                     <div class="top-menu">
-                       
                         <ul class="cl-effect-16">
-                            <li><a class="active" href="LamanApplicant.jsp" data-hover="HOME">HOME</a></li> 
-                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
-                           <li><a href="EditProfilApp.jsp" data-hover="EDIT PROFIL">EDIT PROFIL</a></li>
-                            <li><a href=# data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
-                            <li><a href="LogoutProccess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
-                            
+                            <li><a  class="active" href="LamanCustomer.jsp" data-hover="Home">Home</a></li> 
+                            <li><a  href="LamanProfileCust.jsp" data-hover="Profile Customers">Profile Customer</a></li>
+                            <li><a  href="EditProfilCust.jsp" data-hover="Edit Data">Edit Data</a></li>
+                            <li><a  href="FormPasangIklan.jsp" data-hover="Pasang Iklan">Pasang Iklan</a></li>
+                            <li><a  href="LogoutProccess.jsp" data-hover="Logout">Logout</a></li>
                         </ul>
                     </div>
-                    <!-- script-untuk-menu -->
+                    <!-- script-for-menu -->
+
+                    
                     <script>
                         $("span.menu").click(function () {
                             $(".top-menu").slideToggle("slow", function () {
@@ -86,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="header-middle">
                 <div class="container">
                     <div class="logo">
-                        <a href=""><h1>CV. Putra Harapan Baru Edi Daya Group</h1></a>
+                        <a href="index.html"><h1>CV. Putra Harapan Baru Edi Daya Group</h1></a>
                         <h2> Jasa Penyalur Tenaga Kerja</h2>
                         <p> Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                         <%
@@ -102,26 +98,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             String query;
             String userName = (String) session.getAttribute("userName");
 
-            query = "select namaAppl from tabelapplicant where userName='" + userName + "' ";
+            query = "select namaCust from tabelcustomers where userName='" + userName + "' ";
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
         %>
         <br>
         
-        <h3>Selamat Datang <%=resultSet.getString("namaAppl")%></h3>
+        <h3>Selamat Datang <%=resultSet.getString("namaCust")%></h3>
                         <%}%>
                     </div>
+                    
                     <div class="header-top-right">
-                       
                     </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
         </div>
         <div class="banner">
-<!--            <div class="container">
-                
-                banner
+            <div class="container">
+                <div  class="callbacks_container">
+                    <ul class="rslides" id="slider4">
+                        <li>
+                            <div class="banner-info">
+                                <h3>Butuh Pekerjaan? </h3>
+                                <h2> Mulai nasib anda disini...</h2>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="banner-info">
+                                <h3>Butuh Tenaga Kerja? </h3>
+                                <h2>Kami dapat memberikan solusi</h2>
+                            </div>								
+                        </li>
+                        <li>
+                            <div class="banner-info">
+                                <h3>Belum Punya Akun? </h3>
+                                <h2>Registrasi dulu...</h2>
+                            </div>								
+                        </li>
+
+                    </ul>
+                </div>
+                <!--banner-->
                 <script src="js/responsiveslides.min.js"></script>
                 <script>
                         // You can also use "$(window).load(function() {"
@@ -142,7 +160,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             });
                         });
                 </script>
-            </div>-->
+            </div>
         </div>
         <!--welcome/sekilas tentang edi daya group-->
         <div class="welcome">
@@ -159,6 +177,84 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
         </div>
         <!--//welcome-->
+
+
+        <!--start-info lowongan kerja-->
+        <!--info lowongan kerja-->
+        <div class="service-section" id="service">
+            <div class="container">
+                <h3 class="tittle">Info Update lowongan kerja</h3>
+                <div class="serve-grids">
+                    <div class="serve-one">
+                        <div class="col-md-6 serve-left">
+                            <div class="col-md-6 service-grid">
+
+                                <h5>Staf Admin</h5>
+                                <p>Minimal SMA sederajat
+                                <p> Wanita
+                                <p>Niat kerja, jujur, rajin
+                                <p>Penampilan rapi dan menarik
+                                <p>Non hijab
+                                <p>Gaji awal 1,2jt
+                                <p>Makan tidur dalam
+                                <p>Libur tiap hari minggu dan tanggal merah</p>
+                                <p>Lokasi Piyungan</p>
+
+
+                            </div>
+                            <div class="col-md-6 service-grid">
+
+                                <h5>Baby Sitter</h5>
+                                <p>Identitas jelas dan lengkap
+                                <P>Wanita
+                                <p>Niat kerja, jujur, sabar
+                                <p>Gaji 1,3 - 1,4jt
+                                <p>Makan tidur dalam
+                                <p>Libur 2x per bulan
+                                <p>Lokasi Jogja Bantul</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-6 serve-img">
+                            <img src="images/staf.jpg" alt=""/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="serve-one">
+                        <div class="col-md-6 serve-img two">
+                            <img src="images/cs.jpg" alt=""/>
+                        </div>
+                        <div class="col-md-6 serve-left two">
+                            <div class="col-md-6 service-grid">
+                                <h5>Waiter</h5>
+                                <P>Pria
+                                <p>Minimal SMP
+                                <p>Niat kerja, rajin
+                                <p>Gaji awal 800 ribu
+                                <p>Makan tidur dalam
+                                <p>Lokasi Jogja Sleman</p>
+                            </div>
+                            <div class="col-md-6 service-grid">
+
+                                <h5>House Keeping</h5>
+                                <P>Pria
+                                <p>Minimal SMP
+                                <p>Niat kerja, jujur dan rajin
+                                <p>Gaji awal 800 ribu
+                                <p>Makan tidur dalam
+                                <p>Lokasi Jogja Semarang</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="clearfix"> </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--//end-welcome-->
+
+
 
         <!--/footer/info kontak dan alamat-->
         <div class="footer">
@@ -213,4 +309,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
     </body>
-</html
+</html>

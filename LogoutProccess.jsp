@@ -1,3 +1,11 @@
+<%-- 
+    Document   : logoutprocess
+    Created on : May 7, 2016, 1:57:15 PM
+    Author     : user
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -5,15 +13,6 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="modelAndControl.Koneksi"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.Statement"%>
-<%@page language="java" %>
-<%! Statement statement;%>
-<%! ResultSet result;%>
-<% Koneksi conn = new Koneksi();%>
 <html>
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
@@ -32,12 +31,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script type="text/javascript" src="js/move-top.js"></script>
         <script type="text/javascript" src="js/easing.js"></script>
         <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                $(".scroll").click(function (event) {
-                    event.preventDefault();
-                    $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
-                });
-            });
+jQuery(document).ready(function($) {
+    $(".scroll").click(function(event) {
+        event.preventDefault();
+        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
+    });
+});
         </script>
 
     </head>
@@ -49,17 +48,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="menu"></span>
                     <div class="top-menu">
                         <ul class="cl-effect-16">
-                            <li><a  href="LamanCustomer.jsp" data-hover="Home">Home</a></li> 
-                            <li><a  href="LamanProfileCust.jsp" data-hover="Profile Customers">Profile Customer</a></li>
-                            <li><a  href="EditProfilCust.jsp" data-hover="Edit Data">Edit Data</a></li>
-                            <li><a  href="FormPasangIklan.jsp" data-hover="Pasang Iklan">Pasang Iklan</a></li>
-                            <li><a  href="LogoutProccess.jsp" data-hover="Logout">Logout</a></li>
+                            <li><a  href="Home.jsp"  data-hover="HOME">HOME</a></li> 
+                            <li><a  data-hover="REGISTER">REGISTER
+                                   <ul><a href="FormSignUpApp.jsp" value="applicant"> Applicant (Tenaga Kerja)</a> </ul>
+                                    <ul><a href="FormSignUpCust.jsp" value="customer">Customer (Pengguna Jasa)</a></ul>
+                             </a></li>
+                            <li><a  href="InformasiLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
+                            <li><a  href="About.jsp" data-hover="About">Tentang Perusahaan</a></li>
+                            <li><a  class="active" href="FormLoginUser.jsp" data-hover="LOGIN">LOGIN</a></li>
                         </ul>
                     </div>
                     <!-- script-for-menu -->
                     <script>
-                        $("span.menu").click(function () {
-                            $(".top-menu").slideToggle("slow", function () {
+                        $("span.menu").click(function() {
+                            $(".top-menu").slideToggle("slow", function() {
                                 // Animation complete.
                             });
                         });
@@ -75,103 +77,52 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h2> Jasa Penyalur Tenaga Kerja</h2>
                         <p> Jl. Kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                     </div>
+                    <div class="header-top-right">
 
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
-
         </div>
-
-        <!--Profil Applicant-->
+        <div class="banner two">
+        </div>
+        <!--/contact-->
         <%
-            Statement statement;
-            Koneksi dbConn = null;
-            Connection sqlConn = null;
-            ResultSet resultSet = null;
+            session.removeAttribute("userName");
+            session.invalidate();
 
-            dbConn = new Koneksi();
-            sqlConn = dbConn.getConnection();
-
-            statement = sqlConn.createStatement();
-            String query;
-            String userName = (String) session.getAttribute("userName");
-
-            query = "select namaCust, passwordUser, noTelpCust, alamatCust, about from tabelcustomers where userName='" + userName + "' ";
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
         %>
-        <div class="about">
+
+        <h1 class="second-head" align="center"> Anda Berhasil Keluar </h1>
+        <h1 class="second-head" align="center">Silakan Login kembali untuk masuk ke Profile Anda</h1>
+
+        <div class="section-contact">
             <div class="container">
-                <h3 class="tittle">Data Profil</h3>
-                <div class="about-top">
-                    <!--				       <div class="col-md-5 ab-text">
-                                                                 <img src="images/ab.jpg" alt=""/>
-                                                                     <div class="quote-author-info padding5"><p>There are many variations of passages of Lorem Ipsum available, but the majority some lorem.</p>
-                                                                    <div class="author-title"><span class="author-designation">Advocate,</span> Joseph</div>
-                                                                    </div>
-                                                               </div>-->
-                    <div class="col-md-7 info">
-                        <section class="ac-container">
+                <h2 class="second-head">Login</h2>
+                <div class="contact-main">
 
-                            <div>  
-                                <label >Nama : <%=resultSet.getString("namaCust")%></label>
-
-                            </div>
-                            <div>
-
-                                <label >Password : <%=resultSet.getString("passwordUser")%></label>
-
-                            </div>
-
-                            <div>
-
-                                <label >Telepon : <%=resultSet.getString("noTelpCust")%></label>
-
-                            </div>
-                            <div>
-
-                                <label>Alamat Tinggal :<%=resultSet.getString("alamatCust")%></label>
-
-                            </div> 
-                            <div>
-
-                                <label>Tentang Perusahaan :<%=resultSet.getString("about")%></label>
-
-                            </div> 
-
-
-                            <% }%>
-
-
-                        </section>
-                        <form action="EditProfilCust.jsp">
+                    <div class="col-md-6 contact-grid">
+                        <form action="ServletLogin" name="myform" id="myform" method="get">
+                            <p class="your-para">UserName :</p>
+                            <input type="text" name="username" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '';
+                                    }">
+                            <p class="your-para">Password :</p>
+                            <input type="password" name="passwordUser" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '';
+                                    }">
                             <div class="send">
-                                <input type="submit" value="Edit Profil" >
+                                <input type="submit" value="Login" >
                             </div>
                         </form>
                     </div>
-                    <div class="clearfix"></div>
+                    <div class="clearfix"> </div>
                 </div>
-
             </div>
         </div>
 
-        <!--/contact-->
-        <!--        <div class="section-contact">
-                    <div class="container">
-                        <h2 class="second-head">Data Profil</h2>
-                        <div class="contact-main">
-        
-                            <div class="col-md-6 contact-grid">
-                            
-        
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </div>
-                </div>-->
 
-
+        <!--/footer/info kontak dan alamat-->
         <div class="footer">
             <div class="container">
                 <div class="footer-top">
@@ -206,9 +157,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <p>&copy; 2016 Edi Daya Group. All Rights Reserved </p>
         </div>
         <!--//footer-->
+
         <!--start-smoth-scrolling-->
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 /*
                  var defaults = {
                  containerID: 'toTop', // fading element id

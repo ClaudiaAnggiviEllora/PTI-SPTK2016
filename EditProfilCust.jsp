@@ -32,12 +32,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script type="text/javascript" src="js/move-top.js"></script>
         <script type="text/javascript" src="js/easing.js"></script>
         <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                $(".scroll").click(function (event) {
-                    event.preventDefault();
-                    $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
-                });
-            });
+jQuery(document).ready(function ($) {
+    $(".scroll").click(function (event) {
+        event.preventDefault();
+        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
+    });
+});
         </script>
 
     </head>
@@ -47,7 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="header-top">
                 <div class="container">
                     <span class="menu"></span>
-                    <div class="top-menu">
+                   <div class="top-menu">
                         <ul class="cl-effect-16">
                             <li><a  href="LamanCustomer.jsp" data-hover="Home">Home</a></li> 
                             <li><a  href="LamanProfileCust.jsp" data-hover="Profile Customers">Profile Customer</a></li>
@@ -75,127 +75,89 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h2> Jasa Penyalur Tenaga Kerja</h2>
                         <p> Jl. Kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                     </div>
-
+                    <div class="header-top-right">
+ 
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
 
         </div>
-
-        <!--Profil Applicant-->
-        <%
-            Statement statement;
-            Koneksi dbConn = null;
-            Connection sqlConn = null;
-            ResultSet resultSet = null;
-
-            dbConn = new Koneksi();
-            sqlConn = dbConn.getConnection();
-
-            statement = sqlConn.createStatement();
-            String query;
-            String userName = (String) session.getAttribute("userName");
-
-            query = "select namaCust, passwordUser, noTelpCust, alamatCust, about from tabelcustomers where userName='" + userName + "' ";
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-        %>
-        <div class="about">
+        
+        <!--/contact-->
+        <div class="section-contact">
             <div class="container">
-                <h3 class="tittle">Data Profil</h3>
-                <div class="about-top">
-                    <!--				       <div class="col-md-5 ab-text">
-                                                                 <img src="images/ab.jpg" alt=""/>
-                                                                     <div class="quote-author-info padding5"><p>There are many variations of passages of Lorem Ipsum available, but the majority some lorem.</p>
-                                                                    <div class="author-title"><span class="author-designation">Advocate,</span> Joseph</div>
-                                                                    </div>
-                                                               </div>-->
-                    <div class="col-md-7 info">
-                        <section class="ac-container">
+                <h2 class="second-head">Data Profil</h2>
+                <div class="contact-main">
 
-                            <div>  
-                                <label >Nama : <%=resultSet.getString("namaCust")%></label>
+                    <div class="col-md-6 contact-grid">
+                        <%
+                            Statement statement;
+                            Koneksi dbConn = null;
+                            Connection sqlConn = null;
+                            ResultSet resultSet = null;
 
-                            </div>
-                            <div>
+                            dbConn = new Koneksi();
+                            sqlConn = dbConn.getConnection();
 
-                                <label >Password : <%=resultSet.getString("passwordUser")%></label>
+                            statement = sqlConn.createStatement();
+                            String query;
+                            String userName = (String) session.getAttribute("userName");
 
-                            </div>
+                            query = "select namaCust, passwordUser, noTelpCust, alamatCust, about from tabelcustomers where userName='" + userName + "' ";
+                            resultSet = statement.executeQuery(query);
+                            if (resultSet.next()) {
+                        %>
+<form action="ServletEditProfile" method="get" >
+                        <label>Nama :<input type="text" name="namaCust" value="<%=resultSet.getString("namaCust")%>"> </label>
 
-                            <div>
+                        <label>Password :<input type="text" name="passwordUser" value= "<%=resultSet.getString("passwordUser")%>"> </label>
 
-                                <label >Telepon : <%=resultSet.getString("noTelpCust")%></label>
+                        <label>Nomor Telepon : <input type="text" name="noTelpCust" value= "<%=resultSet.getString("noTelpCust")%>"> </label>
 
-                            </div>
-                            <div>
+                        <label> Alamat : <input type="text" name="alamatCust" value= "<%=resultSet.getString("alamatCust")%>"></label>
 
-                                <label>Alamat Tinggal :<%=resultSet.getString("alamatCust")%></label>
+                        <label>Tentang Perusahaan :<input type="text" name="about" value= "<%=resultSet.getString("about")%>"></label> 
 
-                            </div> 
-                            <div>
-
-                                <label>Tentang Perusahaan :<%=resultSet.getString("about")%></label>
-
-                            </div> 
-
-
-                            <% }%>
-
-
-                        </section>
-                        <form action="EditProfilCust.jsp">
+                      
                             <div class="send">
-                                <input type="submit" value="Edit Profil" >
-                            </div>
+                            <input type="submit" value="Simpan" >
+                        </div>
                         </form>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                        
+                        <%}%>
 
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
             </div>
         </div>
 
-        <!--/contact-->
-        <!--        <div class="section-contact">
-                    <div class="container">
-                        <h2 class="second-head">Data Profil</h2>
-                        <div class="contact-main">
-        
-                            <div class="col-md-6 contact-grid">
-                            
-        
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </div>
-                </div>-->
 
-
+        <!--/footer-->
         <div class="footer">
             <div class="container">
                 <div class="footer-top">
                     <div class="col-md-4 footer-grid">
-                        <h4>Kontak kami</h4>
+                        <h4>Get Free Consultation</h4>
                         <ul class="bottom">
-                            <li><i class="glyphicon glyphicon-earphone"></i>Telepon/hp : 0274-2800589 / 082226585048 / 085601987983</li>
-                            <li>pin BB : 5d1a53dc
-
-                        </ul>
-                    </div>
-
-                    <div class="col-md-4 footer-grid">
-                        <h4>Alamat Kantor</h4>
-                        <ul class="bottom">
-                            <li><i class="glyphicon glyphicon-map-marker"></i>Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</li>
-
+                            <li>(888) 123-456-7890</li>
+                            <li>Available 24/7</li>
                         </ul>
                     </div>
                     <div class="col-md-4 footer-grid">
-                        <h4>Jam Kerja</h4>
+                        <h4>Message Us Now</h4>
                         <ul class="bottom">
-
-                            <li>Senin-Minggu pukul 09.00-16.00</li>
+                            <li><i class="glyphicon glyphicon-home"></i>Available 24/7 </li>
+                            <li><i class="glyphicon glyphicon-envelope"></i><a href="mailto:info@example.com">mail@example.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 footer-grid">
+                        <h4>Address Location</h4>
+                        <ul class="bottom">
+                            <li><i class="glyphicon glyphicon-map-marker"></i>2901 Glassgow Road, WA 98122-1090 </li>
+                            <li><i class="glyphicon glyphicon-earphone"></i>phone: (888) 123-456-7899 </li>
                         </ul>
                     </div>
                     <div class="clearfix"> </div>
@@ -203,7 +165,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
         </div>
         <div class="copy">
-            <p>&copy; 2016 Edi Daya Group. All Rights Reserved </p>
+            <p>&copy; 2016 Legalized. All Rights Reserved | Design By <a href="http://w3layouts.com/">W3layouts</a></p>
         </div>
         <!--//footer-->
         <!--start-smoth-scrolling-->

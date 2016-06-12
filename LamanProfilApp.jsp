@@ -48,12 +48,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="container">
                     <span class="menu"></span>
                     <div class="top-menu">
+                       
                         <ul class="cl-effect-16">
-                            <li><a href="LamanApplicant.jsp" data-hover="HOME">HOME</a></li> 
-                            <li><a href="LamanProfilApp.jsp" class="active" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
-                            <li><a href="" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA</a></li> 
-                            <li><a href="logoutprocess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
-                           
+                            <li><a class="active" href="LamanApplicant.jsp" data-hover="HOME">HOME</a></li> 
+                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
+                           <li><a href="EditProfilApp.jsp" data-hover="EDIT PROFIL">EDIT PROFIL</a></li>
+                            <li><a href=# data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
+                            <li><a href="LogoutProccess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
+                            
                         </ul>
                     </div>
                     <!-- script-for-menu -->

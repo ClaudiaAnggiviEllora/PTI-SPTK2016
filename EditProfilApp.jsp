@@ -47,12 +47,15 @@ jQuery(document).ready(function ($) {
             <div class="header-top">
                 <div class="container">
                     <span class="menu"></span>
-                    <div class="top-menu">
+                 <div class="top-menu">
+                       
                         <ul class="cl-effect-16">
-                            <li><a href="LamanApplicant.jsp" data-hover="HOME">HOME</a></li> 
-                            <li><a href="" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
-                            <li><a href="" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA</a></li>
-                            <li><a href="logoutprocess.jsp" data-hover="Practise Area">LOGOUT</a></li>                            
+                            <li><a class="active" href="LamanApplicant.jsp" data-hover="HOME">HOME</a></li> 
+                           <li><a href="LamanProfilApp.jsp" data-hover="PROFIL DIRI">PROFIL DIRI</a></li>
+                           <li><a href="EditProfilApp.jsp" data-hover="EDIT PROFIL">EDIT PROFIL</a></li>
+                            <li><a href=# data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></li>
+                            <li><a href="LogoutProccess.jsp" data-hover="LOGOUT">LOGOUT</a></li>
+                            
                         </ul>
                     </div>
                     <!-- script-for-menu -->
@@ -113,16 +116,16 @@ jQuery(document).ready(function ($) {
                             resultSet = statement.executeQuery(query);
                             if (resultSet.next()) {
                         %>
-<form action="ServletEditProfil" method="POST" >
-                        <p class="your-para">Nama :<input type="text" name="namaAppl" value= <%=resultSet.getString("namaAppl")%> onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></p>
+<form action="ServletEditProfile" method="POST" >
+                        <label>Nama :<input type="text" name="namaAppl" value=" <%=resultSet.getString("namaAppl")%>"></label>
 
-                        <p class="your-para">Password :<input type="text" name="passwordUser" value= <%=resultSet.getString("passwordUser")%> onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></p>
+                        <label>Password :<input type="text" name="passwordUser" value=" <%=resultSet.getString("passwordUser")%>"></label>
 
-                        <p class="your-para">Tempat Tanggal Lahir : <input type="text" name="TTLAppl" value= <%=resultSet.getString("TTLAppl")%> onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></p>
+                        <label>Tempat Tanggal Lahir : <input type="text" name="TTLAppl" value= "<%=resultSet.getString("TTLAppl")%>"> </label>
 
-                        <p class="your-para">Telepon : <input type="text" name="telepon" value= <%=resultSet.getString("telepon")%> onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></p>
+                        <label> Telepon : <input type="text" name="telepon" value= "<%=resultSet.getString("telepon")%>"> </label>
 
-                        <p class="your-para">Alamat Tinggal :<input type="text" name="alamatTinggal" value= <%=resultSet.getString("alamatTinggal")%> onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></p> </p>
+                        <label>Alamat Tinggal :<input type="text" name="alamatTinggal" value= "<%=resultSet.getString("alamatTinggal")%>"> </label> 
 
                         
                             <div class="send">

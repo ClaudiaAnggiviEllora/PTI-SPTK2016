@@ -1,14 +1,17 @@
 <%-- 
-    Document   : FormPasangIklan
+    Document   : FormAddInfoLoker
     Created on : May 3, 2016, 8:46:42 PM
     Author     : laura
 --%>
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="modelAndControl.Koneksi"%>
+<%@page import="java.sql.Statement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>CV.Putra Harapan Baru Edi Daya Group</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,13 +35,6 @@
                 });
             });
         </script>
-        <style type="text/css" >
-            BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
-            A{font-family: Arial,Verdana,Helvetica, sans-serif;}
-            B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
-            .error_strings{ font-family:Verdana; font-size:14px; color:#660000;}
-        </style><script language="JavaScript" src="gen_validatorv4.js"
-        type="text/javascript" ></script>
         <!--gallery-->
         <script src="js/jquery.chocolat.js"></script>
         <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="all" />
@@ -53,6 +49,13 @@
                 $('#portfolio a').Chocolat();
             });
         </script>
+        <style type="text/css" >
+            BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
+            A{font-family: Arial,Verdana,Helvetica, sans-serif;}
+            B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
+            .error_strings{ font-family:Verdana; font-size:14px; color:#660000;}
+        </style><script language="JavaScript" src="gen_validatorv4.js"
+        type="text/javascript" ></script>
 
     </head>
     <body>
@@ -62,21 +65,36 @@
                 <div class="container">
                     <span class="menu"></span>
                     <div class="top-menu">
-                        <ul class="cl-effect-16">
-                            <li><a  href="LamanCustomer.jsp" data-hover="Home">Home</a></li> 
-                            <li><a  href="LamanProfileCust.jsp" data-hover="Profile Customers">Profile Customer</a></li>
-                            <li><a  href="EditProfilCust.jsp" data-hover="Edit Data">Edit Data</a></li>
-                            <li><a  href="FormPasangIklan.jsp" data-hover="Pasang Iklan">Pasang Iklan</a></li>
-                            <li><a  href="LogoutProccess.jsp" data-hover="Logout">Logout</a></li>
+                         <ul class="cl-effect-16">
+                             <li><a   href="LamanAdmin.jsp" data-hover="Home">Home</a></li> 
+                            <li><a  data-hover="Tambah Data">Tambah Data
+                                    <ul><a href="FormAddApplicant.jsp" value="applicant"> Applicant (Tenaga Kerja)</a> </ul>
+                                    <ul><a class="active" href="FormAddInfoLoker.jsp" value=""> Lowongan Kerja</a> </ul>
+                                </a></li>
+
+                            <li><a  data-hover="Lihat Data">Lihat Data
+                                    <ul><a href="LihatDataApplicant.jsp" value="applicant"> Applicant (Tenaga Kerja)</a> </ul>
+                                    <ul><a href="LihatDataCustomer.jsp" value="customers"> Customers</a> </ul>
+                                    <ul><a href="DataPelamar.jsp" value="dataPelamar"> PELAMAR PEKERJAAN</a> </ul>
+
+                                </a></li>
+                            <li><a  data-hover="Lowongan Pekerjaan">Lowongan Pekerjaan
+
+                                    <ul><a  href=# data-hover="KONFIRMASI LOWONGAN KERJA">KONFIRMASI LOWONGAN KERJA </a></ul>
+                                    <ul><a  href="LihatDataLoker.jsp" data-hover="INFORMASI LOWONGAN KERJA">INFORMASI LOWONGAN KERJA </a></ul>
+                                    <ul><a href=# data-hover="Hapus Lowongan Pekerjaan">Hapus Lowongan Kerja</a></ul>
+                                </a></li>
+
+                            <li><a href="LogoutProccess.jsp" data-hover="Logout">Logout</a></li>
                         </ul>
                     </div>
                     <!-- script-untuk-menu -->
                     <script>
-                        $("span.menu").click(function () {
-                            $(".top-menu").slideToggle("slow", function () {
-                                // Animation complete.
-                            });
-                        });
+            $("span.menu").click(function () {
+                $(".top-menu").slideToggle("slow", function () {
+                    // Animation complete.
+                });
+            });
                     </script>
                     <div class="clearfix"></div>
                     <!--End-top-nav-script-->
@@ -90,7 +108,11 @@
                         <p> Jl.kedawung No.170, Nologaten, Catur Tunggal, Depok, Sleman, Yogyakarta</p>
                     </div>
                     <div class="header-top-right">
-                        
+                        <form>
+                            <input type="text" placeholder="Search" required="">
+                            <input type="submit" value="">
+                            <div class="clearfix"> </div>
+                        </form>
 
                     </div>
                     <div class="clearfix"> </div>
@@ -98,18 +120,20 @@
             </div>
         </div>
 
-
         <!--/form registrasi identitas-->
         <div class="section-contact">
             <div class="container">
-                <h2 class="second-head">Pasang Iklan</h2>
+                <h2>Data Info Lowongan Kerja berhasil ditambahkan!</h2>
+                <h2 class="second-head">Tambah Informasi Lowongan Kerja</h2>
                 <div class="contact-main">
 
 
                     <div class="col-md-6 contact-grid">
-                        <form action="ServletLoker2" name="myform" id="myform" method="post"> 
+
+
+                        <form action="ServletLoker2" name="myform" id="myform" method="get"> 
                             <p class="your-para">Tanggal update :</p>
-                            <input type="date" name="tanggal"value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                            <input type="date" name="tanggal" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">	
                             <p class="your-para">Jenis Pekerjaan :</p>                          
@@ -151,7 +175,7 @@
                             <input type="text" name="noKTP"value="" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">
-                            <p class="your-para">NPWP :</p>
+                            <p class="your-para">(* NPWP (Nomor Pokok Wajib Pajak) :</p>
                             <input type="text" name="NPWP"value="" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">
@@ -172,14 +196,17 @@
                                         this.value = '';
                                     }">
                             <p class="your-para">Fasilitas :</p>
-                            <input type="text" name="fasilitas"value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                            <input type="text" name="fasilitas"value="contoh: gaji Rp.1 jt, kamar dalam" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">
 
                             <div class="send">
-                                <input type="submit" value="Kirim Iklan" >
+                                <input type="submit" value="Tambah Data" >
                             </div>
-                        </form>^
+
+                        </form>
+
+                       
                         <script language="JavaScript" type="text/javascript">//<![CDATA[
 //You should create the validator only after the definition of the HTML form
                             var frmvalidator = new Validator("myform");
